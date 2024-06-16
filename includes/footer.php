@@ -23,22 +23,19 @@
                 <h6>Contact</h6>
                 <div class="contact-link">
                     <span>Phone:</span>
-                    <a href="tel:+1 (268) 786-7559">+1 (268) 786-7559</a>
+                    <a href="tel:+1 (268) 771-1891">+1 (268) 771-1891</a>
                 </div>
                 <div class="contact-link">
                     <span>Email:</span>
-                    <a href="mailto:shaquanoneil99@gmail.com">shaquanoneil99@gmail.com</a>
+                    <a href="mailto:info@keyscarrentalantigua.com">info@keyscarrentalantigua.com</a>
                 </div>
             </div>
         </div>
 
-        <div id="copyright">© <?php echo date('Y'); ?> Shaquan's Car Rental Antigua   |   US$ to EC$ Exchange at 2.7   |   For discounted rate, enter 2 or more days.</div>
+        <div id="copyright">© <?php echo date('Y'); ?> The Keys Car Rental Antigua   |   US$ to EC$ Exchange at 2.7   |   For discounted rate, enter 2 or more days.</div>
     </div>
 
 </footer>
-
-UPDATE "GameWeek" set "startDate" = '2024-06-12 17:00:00' where id = 3;
-
 
 </body>
 

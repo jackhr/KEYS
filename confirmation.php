@@ -4,7 +4,7 @@ session_start();
 
 $title_suffix = "Confirmation";
 $page = "confirmation";
-$description = "Thank you for choosing Shaquan's Car Rental. Your order has been requested.";
+$description = "Thank you for choosing The Keys Car Rental. Your order has been requested.";
 $extra_css = "reservation";
 
 include_once 'includes/header.php';

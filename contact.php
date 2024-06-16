@@ -2,7 +2,7 @@
 
 $title_suffix = "Contact";
 $page = "contact";
-$description = "Contact Shaquan's Car Rental for more information about our services, vehicles, and more.";
+$description = "Contact The Keys Car Rental for more information about our services, vehicles, and more.";
 
 include_once 'includes/header.php';
 
@@ -14,7 +14,7 @@ include_once 'includes/header.php';
 
 <section id="contact-card-section">
     <div class="inner">
-        <h1>Shaquan's Car Rental</h1>
+        <h1>The Keys Car Rental</h1>
 
         <div class="contact-brief-info">
             <span>Herbert’s road</span>
@@ -25,11 +25,11 @@ include_once 'includes/header.php';
         <div>
             <div class="contact-link">
                 <span>Phone:</span>
-                <a href="tel:+1 (268) 786-7449">+1 (268) 786-7449</a>
+                <a href="tel:+1 (268) 771-1891">+1 (268) 771-1891</a>
             </div>
             <div class="contact-link">
                 <span>Email:</span>
-                <a href="mailto:shaquanoneil99@gmail.com">shaquanoneil99@gmail.com</a>
+                <a href="mailto:info@keyscarrentalantigua.com">info@keyscarrentalantigua.com</a>
             </div>
         </div>
 

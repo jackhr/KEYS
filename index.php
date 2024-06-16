@@ -2,7 +2,7 @@
 
 $title_suffix = "Home";
 $page = "index";
-$description = "Welcome to Shaquan's Car Rental. We offer affordable car rentals in Antigua. Book your vehicle today!";
+$description = "Welcome to The Keys Car Rental. We offer affordable car rentals in Antigua. Book your vehicle today!";
 include_once 'includes/header.php';
 
 $vehicles_arr = [];
@@ -78,7 +78,7 @@ while ($row = mysqli_fetch_assoc($result)) $vehicles_arr[] = $row;
 <section id="feature-section">
 
     <div class="inner">
-        <h1>Shaquan's Car Rental</h1>
+        <h1>The Keys Car Rental</h1>
         <div id="features">
             <div class="feature-container">
                 <div class="feature-icon">
@@ -111,7 +111,7 @@ while ($row = mysqli_fetch_assoc($result)) $vehicles_arr[] = $row;
                 </div>
                 <div class="feature-info">
                     <h2>Outstanding Service</h2>
-                    <p>At Shaquan's Car Rental, we're dedicated to delivering a service experience that surpasses expectations. Our approach is rooted in honesty, professionalism, and a warm, friendly demeanor towards all our clients. We prioritize your user experience, understanding that the most powerful endorsement comes from satisfied customers sharing their positive experiences through word-of-mouth.</p>
+                    <p>At The Keys Car Rental, we're dedicated to delivering a service experience that surpasses expectations. Our approach is rooted in honesty, professionalism, and a warm, friendly demeanor towards all our clients. We prioritize your user experience, understanding that the most powerful endorsement comes from satisfied customers sharing their positive experiences through word-of-mouth.</p>
                 </div>
             </div>
             <div class="feature-container">

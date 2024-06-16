@@ -23,14 +23,14 @@ try {
     $message = $data["message"];
 
     // Email values
-    $to = "jc2o@mac.com,jrainey@tropicalstudios.com";
-    $subject = "Someone Has Contacted You From Shaquan's Car Rental Website";
-    $headers  = "From: no-reply@shaquanscarrental.com\r\n";
+    $to = "info@keyscarrentalantigua.com,jc2o@mac.com,jrainey@tropicalstudios.com";
+    $subject = "Someone Has Contacted You From The Keys Car Rental Website";
+    $headers  = "From: no-reply@keyscarrentalantigua.com\r\n";
     $headers .= "Reply-To: $email\r\n";
     $headers .= "MIME-Version: 1.0\r\n";
     $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
 
-    $body = "Some has contacted you from the Shaquan's Car Rental website.
+    $body = "Some has contacted you from the The Keys Car Rental website.
 
 Name: $name
 
@@ -40,8 +40,6 @@ Message: $message";
 
     // Send email to Admin
     $mail_res = mail($to, $subject, $body, $headers);
-
-    // Later on we send to shaquanoneil99@gmail.com
 
     respond([
         "success" => true,

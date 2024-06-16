@@ -69,8 +69,8 @@ try {
     }
 
     // Email values
-    $subject = "Car Rental Request at Shaquan's Car Rental";
-    $headers  = "From: no-reply@shaquanscarrental.com\r\n";
+    $subject = "Car Rental Request at The Keys Car Rental";
+    $headers  = "From: no-reply@keyscarrentalantigua.com\r\n";
     $headers .= "MIME-Version: 1.0\r\n";
     $headers .= "Content-type: text/html; charset=iso-8859-1\r\n";
 
@@ -80,9 +80,7 @@ try {
     $mail_res_client = mail($email, $subject, $body, $headers);
 
     // Send email to Admin
-    $mail_res_admin = mail("jc2o@mac.com,jrainey@tropicalstudios.com", $subject, $body, $headers);
-
-    // Let on we send to shaquanoneil99@gmail.com
+    $mail_res_admin = mail("info@keyscarrentalantigua.com,jc2o@mac.com,jrainey@tropicalstudios.com", $subject, $body, $headers);
 
     session_destroy();
 

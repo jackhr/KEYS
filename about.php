@@ -2,7 +2,7 @@
 
 $title_suffix = "About";
 $page = "about";
-$description = "Learn more about Shaquan's Car Rental. Find out about our history, mission, and more.";
+$description = "Learn more about The Keys Car Rental. Find out about our history, mission, and more.";
 
 include_once 'includes/header.php';
 
@@ -17,10 +17,10 @@ include_once 'includes/header.php';
         <div class="about-panel">
             <img src="/assets/images/misc/smiley-couple-traveling-by-car.jpg" alt="">
             <div>
-                <h1>WELCOME TO SHAQUAN's CAR RENTAL</h1>
-                <p>Shaquan's Car Rental has been servicing the transport industry in Antigua for years and we are dedicated to growing our company as the tourism sector and economy of Antigua & Barbuda expands.</p>
-                <p>Whether you’re a new visitor to our islands or a national returning for a family gathering, we welcome all. Shaquan's Car Rental is here to provide quality transportation services customized to your specific needs.</p>
-                <em>— Shaquan, Owner of Shaquan's Car Rental</em>
+                <h1>WELCOME TO THE KEYS CAR RENTAL</h1>
+                <p>The Keys Car Rental has been servicing the transport industry in Antigua for years and we are dedicated to growing our company as the tourism sector and economy of Antigua & Barbuda expands.</p>
+                <p>Whether you’re a new visitor to our islands or a national returning for a family gathering, we welcome all. The Keys Car Rental is here to provide quality transportation services customized to your specific needs.</p>
+                <em>— Tristan Hughes, Owner of The Keys Car Rental</em>
             </div>
         </div>
 
