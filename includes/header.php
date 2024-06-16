@@ -2,9 +2,9 @@
 
 include 'connection.php';
 
-$description = isset($description) ? $description : "Welcome to Shaquan's Car Rental. We offer a wide selection of vehicles for rent. Book your car today!";
+$description = isset($description) ? $description : "Welcome to The Keys Car Rental. We offer a wide selection of vehicles for rent. Book your car today!";
 
-$base_title = "Shaquan's Car Rental";
+$base_title = "The Keys Car Rental";
 
 $title = isset($title_suffix) ? $base_title .= " | " . $title_suffix : $title;
 
