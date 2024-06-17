@@ -96,7 +96,6 @@ $(function () {
     $(".reservation-step").on('click', function () {
         if ($(this).hasClass('active')) return;
         const step = $(this).data('step');
-        const currentStep = $(".reservation-step.active").data('step');
         $(".reservation-step").removeClass('active');
         $(this).addClass('active');
 
@@ -106,8 +105,6 @@ $(function () {
 
     $(".vehicle-container .continue-btn").on('click', async function () {
         const vehicleContainer = $(this).closest('.vehicle-container');
-
-        if (vehicleContainer.hasClass('active')) return goToAddOns();
 
         const id = vehicleContainer.data('vehicle-id');
         const name = vehicleContainer.find('.vehicle-name').text();
@@ -148,16 +145,29 @@ $(function () {
 
         $("#reservation-summary div.car.summary").html(`<img src="${imgSrc}" alt="${name}">`);
 
+        let priceDay = Number(reservation.vehicle.price_day_USD);
+        let days = 1;
+        let applyDiscount = false;
+        if (reservation.itinerary) {
+            days = getDifferenceInDays(reservation.itinerary.pickUpDate.ts, reservation.itinerary.returnDate.ts);
+            if (Number(reservation.vehicle.uses_discount) === 1 && days >= 2) {
+                applyDiscount = true;
+                priceDay = Number(reservation.vehicle.price_day_low_USD);
+            }
+        }
+
         const rate = {
-            days: 1,
-            rate: makePriceString(reservation.vehicle.price_day_USD),
-            subtotal: makePriceString(reservation.vehicle.price_day_USD)
+            days,
+            rate: makePriceString(priceDay),
+            subtotal: makePriceString(priceDay)
         };
 
         if (reservation.itinerary) {
-            rate.days = getDifferenceInDays(reservation.itinerary.pickUpDate.ts, reservation.itinerary.returnDate.ts);
-            rate.subtotal = makePriceString(reservation.vehicle.price_day_USD, rate.days);
+            rate.subtotal = makePriceString(priceDay, rate.days);
         }
+
+        let rateHTML = rate.rate;
+        if (applyDiscount) rateHTML += `<div class="discount-tool-tip">i<div><span>Fixed price:</span><span><b>2</b> days or more: <b>${rate.rate}</b></span></div></div>`;
 
         $("#reservation-summary div.rate.summary").html(`
             <h6>Rate</h6>
@@ -172,7 +182,7 @@ $(function () {
                 <tbody>
                     <tr>
                         <td>${rate.days}</td>
-                        <td>${rate.rate}</td>
+                        <td>${rateHTML}</td>
                         <td>${rate.subtotal}</td>
                     </tr>
                 </tbody>
@@ -181,7 +191,7 @@ $(function () {
 
         const totalAddOnsCost = reservation.add_ons ? Object.values(reservation.add_ons).reduce((sum, addOn) => sum + parseInt(addOn.cost), 0) : 0;
 
-        $("#reservation-summary .estimated-total span:last-child").text(makePriceString(totalAddOnsCost + (reservation.vehicle.price_day_USD * rate.days)));
+        $("#reservation-summary .estimated-total span:last-child").text(makePriceString(totalAddOnsCost + (priceDay * rate.days)));
 
         goToAddOns();
 
@@ -256,7 +266,16 @@ $(function () {
             `;
         }
 
-        const rentalSubtotal = parseInt(reservation.vehicle.price_day_USD) * getDifferenceInDays(reservation.itinerary.pickUpDate.ts, reservation.itinerary.returnDate.ts);
+        let priceDay = Number(reservation.vehicle.price_day_USD);
+        let days = 1;
+        if (reservation.itinerary) {
+            days = getDifferenceInDays(reservation.itinerary.pickUpDate.ts, reservation.itinerary.returnDate.ts);
+            if (Number(reservation.vehicle.uses_discount) === 1 && days >= 2) {
+                priceDay = Number(reservation.vehicle.price_day_low_USD);
+            }
+        }
+
+        const rentalSubtotal = parseInt(priceDay) * getDifferenceInDays(reservation.itinerary.pickUpDate.ts, reservation.itinerary.returnDate.ts);
 
         $("#reservation-summary div.add-ons.summary").html(html);
         $(".reservation-step.vehicle-add-on .body > div:last-child p").html(spans || "--");
@@ -445,8 +464,6 @@ $(function () {
         });
 
         const emailJSON = await emailRes.json();
-
-        console.log("emailJSON:", emailJSON);
 
         Swal.fire({
             title: emailJSON.success ? "Success" : emailJSON.message,

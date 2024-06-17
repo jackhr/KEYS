@@ -38,7 +38,11 @@ try {
 
     // Caclulate what is needed
     $days = getDifferenceInDays($itinerary['pickUpDate']['date'], $itinerary['returnDate']['date']);
-    $sub_total = (int)$vehicle['price_day_USD'] * $days + array_sum(array_column($add_ons, 'cost'));
+    $price_day = (int)$vehicle['price_day_USD'];
+    if ((int)$vehicle['uses_discount'] && $days >= 2) {
+        $price_day = (int)$vehicle['price_day_low_USD'];
+    }
+    $sub_total = $price_day * $days + array_sum(array_column($add_ons, 'cost'));
     $timestamp = time();
     $pick_up_ts = ((int)$itinerary['pickUpDate']['ts'] / 1000);
     $drop_off_ts = ((int)$itinerary['returnDate']['ts'] / 1000);
