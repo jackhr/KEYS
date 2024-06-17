@@ -814,8 +814,7 @@ footer ul {
 }
 
 .footer-logo div {
-    background: var(--white);
-    padding   : 24px;
+    padding: 24px;
 }
 
 .footer-logo img {
