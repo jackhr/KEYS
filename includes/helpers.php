@@ -35,7 +35,7 @@ function generateEmailBody($first_name, $last_name, $country_region, $street, $t
 {
     function generateAddress($first_name, $last_name, $country_region, $street, $town_city, $state_county, $phone, $email)
     {
-        return "{$first_name} {$last_name}<br>{$street}<br>{$town_city}, {$state_county}<br>{$country_region}<br><a href=\"tel:{$phone}\" style=\"color:#d4a32a;font-weight:normal;text-decoration:underline\" target=\"_blank\">{$phone}</a><br><a href=\"mailto:$email\" target=\"_blank\">{$email}</a>";
+        return "{$first_name} {$last_name}<br>{$street}<br>{$town_city}, {$state_county}<br>{$country_region}<br><a href=\"tel:{$phone}\" style=\"color:#e55f4c;font-weight:normal;text-decoration:underline\" target=\"_blank\">{$phone}</a><br><a href=\"mailto:$email\" target=\"_blank\">{$email}</a>";
     }
 
     $fontFamily = 'font-family:"Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;';
@@ -47,7 +47,7 @@ function generateEmailBody($first_name, $last_name, $country_region, $street, $t
                 <tbody>
                     <tr>
                         <td align="center" valign="top">
-                            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color:#d4a32a;color:#ffffff;border-bottom:0;font-weight:bold;line-height:100%;vertical-align:middle;' . $fontFamily . 'border-radius:3px 3px 0 0">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color:#e55f4c;color:#ffffff;border-bottom:0;font-weight:bold;line-height:100%;vertical-align:middle;' . $fontFamily . 'border-radius:3px 3px 0 0">
                                 <tbody>
                                     <tr>
                                         <td style="padding:36px 48px;display:block">
@@ -72,7 +72,7 @@ function generateEmailBody($first_name, $last_name, $country_region, $street, $t
                                                                 <p style="margin:0 0 16px">Hi ' . $first_name . ' ' . $last_name . ',</p>
                                                                 <p style="margin:0 0 16px">Just to let you know - we\'ve received your order #' . $order_request_id . ', and it is now being processed.</p>
                                                                 <p style="margin:0 0 16px">Pay with cash or card when you pick-up your vehicle.</p>
-                                                                <h2 style="color:#d4a32a;display:block;' . $fontFamily . 'font-size:18px;font-weight:bold;line-height:130%;margin:0 0 18px;text-align:left">Order #' . $order_request_id . ' (<time datetime="' . gmdate("Y-m-d\TH:i:s\+00:00", $timestamp) . '">' . (date("F d, Y", $timestamp)) . '</time>)</h2>
+                                                                <h2 style="color:#e55f4c;display:block;' . $fontFamily . 'font-size:18px;font-weight:bold;line-height:130%;margin:0 0 18px;text-align:left">Order #' . $order_request_id . ' (<time datetime="' . gmdate("Y-m-d\TH:i:s\+00:00", $timestamp) . '">' . (date("F d, Y", $timestamp)) . '</time>)</h2>
                                                                 <table cellspacing="0" cellpadding="6" border="1" style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;width:100%;font-family:\"Helvetica Neue\"Helvetica,Roboto,Arial,sans-serif">
                                                                     <thead>
                                                                         <tr>
@@ -135,14 +135,14 @@ function generateEmailBody($first_name, $last_name, $country_region, $street, $t
                                                                     <tbody>
                                                                         <tr>
                                                                             <td valign="top" width="50%" style="text-align:left;' . $fontFamily . 'border:0;padding:0">
-                                                                                <h2 style="color:#d4a32a;display:block;' . $fontFamily . 'font-size:18px;font-weight:bold;line-height:130%;margin:18px 0;text-align:left">Billing address</h2>
+                                                                                <h2 style="color:#e55f4c;display:block;' . $fontFamily . 'font-size:18px;font-weight:bold;line-height:130%;margin:18px 0;text-align:left">Billing address</h2>
 
                                                                                 <address style="' . $fontFamily . 'padding:12px;color:#636363;border:1px solid #e5e5e5">' . generateAddress($first_name, $last_name, $country_region, $street, $town_city, $state_county, $phone, $email) . ' </address>
                                                                             </td>
                                                                         </tr>
                                                                     </tbody>
                                                                 </table>
-                                                                <p style="margin:0 0 16px;text-align: center;">Thanks for using <a href="http://www.shaquanscarrental.com/confirmation.php?key=' . $key . '" target="_blank">www.shaquanscarrental.com</a>!</p>
+                                                                <p style="margin:0 0 16px;text-align: center;">Thanks for using <a href="http://www.keyscarrentalantigua.com/confirmation.php?key=' . $key . '" target="_blank">www.keyscarrentalantigua.com</a>!</p>
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -168,7 +168,7 @@ function generateEmailBody($first_name, $last_name, $country_region, $street, $t
                                                 <tbody>
                                                     <tr>
                                                         <td colspan="2" valign="middle" style="border-radius:6px;border:0;color:#8a8a8a;' . $fontFamily . 'font-size:12px;line-height:150%;text-align:center;padding:24px 0">
-                                                            <p style="margin:0 0 16px">Shaquan\'s Car Rental Antigua</p>
+                                                            <p style="margin:0 0 16px">The Keys Car Rental Antigua</p>
                                                         </td>
                                                     </tr>
                                                 </tbody>

@@ -80,7 +80,7 @@ try {
     $mail_res_client = mail($email, $subject, $body, $headers);
 
     // Send email to Admin
-    $mail_res_admin = mail("info@keyscarrentalantigua.com,jc2o@mac.com,jrainey@tropicalstudios.com", $subject, $body, $headers);
+    $mail_res_admin = mail("tristanhughes719@gmail.com,info@keyscarrentalantigua.com,jc2o@mac.com,jrainey@tropicalstudios.com", $subject, $body, $headers);
 
     session_destroy();
 
