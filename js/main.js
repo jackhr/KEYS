@@ -222,15 +222,27 @@ $(function () {
 
         const reservation = await ReservationSessionRes.json();
 
+        let priceDay = Number(reservation.vehicle.price_day_USD);
+        let days = 1;
+        if (reservation.itinerary) {
+            days = getDifferenceInDays(reservation.itinerary.pickUpDate.ts, reservation.itinerary.returnDate.ts);
+            if (Number(reservation.vehicle.uses_discount) === 1 && days >= 2) {
+                priceDay = Number(reservation.vehicle.price_day_low_USD);
+            }
+        }
+
         let rows = '', spans = '', html = '', count = 0;
 
         for (const id in reservation.add_ons) {
             count++;
             const addOn = reservation.add_ons[id];
+            let nameTdString = `1 x ${addOn.name}`;
+            if (addOn.fixed_price !== "1") nameTdString += ` for ${days} day(s)`;
             rows += `
                 <tr data-id="${addOn.id}">
-                    <td>${addOn.name}</td>
+                    <td>${nameTdString}</td>
                     <td>${makePriceString(addOn.cost)}</td>
+                    <td>${makePriceString(getAddOnCostForTotalDays(addOn, days))}</td>
                 </tr>
             `;
 
@@ -238,7 +250,8 @@ $(function () {
         }
 
         // Calculate and append the total cost row
-        const totalAddOnsCost = reservation.add_ons ? Object.values(reservation.add_ons).reduce((sum, addOn) => sum + parseInt(addOn.cost), 0) : 0;
+        const totalAddOnsCost = getAddOnsSubTotal(reservation);
+        console.log("totalAddOnsCost:", totalAddOnsCost);
 
         if (rows.length) {
             html = `
@@ -247,13 +260,15 @@ $(function () {
                     <thead>
                         <tr>
                             <th>Name</th>
-                            <th>Cost</th>
+                            <th>Rate</th>
+                            <th>Subtotal</th>
                         </tr>
                     </thead>
                     <tbody>
                         ${rows}
                         <tr>
-                            <td>Add-ons Charges Rate</td>
+                            <td>Add-ons Subtotal</td>
+                            <td></td>
                             <td>${makePriceString(totalAddOnsCost)}</td>
                         </tr>
                     </tbody>
@@ -264,15 +279,6 @@ $(function () {
                 <h6>Add-ons</h6>
                 <div><span>--</span><span>--</span><span>--</span></div>
             `;
-        }
-
-        let priceDay = Number(reservation.vehicle.price_day_USD);
-        let days = 1;
-        if (reservation.itinerary) {
-            days = getDifferenceInDays(reservation.itinerary.pickUpDate.ts, reservation.itinerary.returnDate.ts);
-            if (Number(reservation.vehicle.uses_discount) === 1 && days >= 2) {
-                priceDay = Number(reservation.vehicle.price_day_low_USD);
-            }
         }
 
         const rentalSubtotal = parseInt(priceDay) * getDifferenceInDays(reservation.itinerary.pickUpDate.ts, reservation.itinerary.returnDate.ts);
@@ -291,7 +297,7 @@ $(function () {
         }
     });
 
-    $(".change-car-btn").on('click', function () {
+    $(".change-car-btn, .car.summary > div").off('click').on('click', function () {
         $(".reservation-step.vehicle-add-on .header").trigger('click');
         $("section[data-step]").hide();
         $("#vehicle-selection-section").show();
@@ -343,7 +349,7 @@ $(function () {
             body: JSON.stringify(data)
         });
 
-        const reservationSessionData = await ReservationSessionRes.json();
+        await ReservationSessionRes.json();
 
         // update itinerary section
         $(".reservation-step.itinerary .body>div:first-child p").text(`${data.pickUpLocation} - ${data.pickUpDate.altValue}`);
@@ -590,4 +596,29 @@ function makePriceString(rate, days = 1, currency = 'USD') {
     // Currency can only be USD or EC
     if (currency !== 'USD' && currency !== 'EC') currency = "USD";
     return `$${currency}${parseInt(rate) * days}`;
+}
+
+function getAddOnCostForTotalDays(addOn, days = 1) {
+    let newCost = Number(addOn.cost);
+    if (addOn.fixed_price !== "1") newCost *= days;
+    return newCost;
+}
+
+function getAddOnsSubTotal(reservation) {
+    let subTotal = 0;
+    if (reservation.add_ons) {
+        let days = 1;
+        if (reservation.vehicle && reservation.itinerary) {
+            const itinerary = reservation.itinerary;
+            days = getDifferenceInDays(reservation.itinerary.pickUpDate.ts, reservation.itinerary.returnDate.ts)
+        }
+
+        for (const id in reservation.add_ons) {
+            const addOn = reservation.add_ons[id];
+            console.log(addOn);
+            subTotal += getAddOnCostForTotalDays(addOn, days);
+        }
+    }
+
+    return subTotal;
 }

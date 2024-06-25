@@ -63,7 +63,7 @@ if (!!$order_request) {
     }
     if (isset($reservation['add_ons']) && count($reservation['add_ons']) > 0) {
         $add_ons = $reservation['add_ons'];
-        $estimated_total = isset($estimated_total) ? $estimated_total + array_sum(array_column($add_ons, 'cost')) : array_sum(array_column($add_ons, 'cost'));
+        $estimated_total = isset($estimated_total) ? $estimated_total + getAddOnsSubTotal($reservation) : getAddOnsSubTotal($reservation);
     }
     $estimated_total = isset($estimated_total) ? makePriceString($estimated_total) : "--";
 } else {
@@ -135,19 +135,22 @@ if (!!$order_request) {
                 <thead>
                     <tr>
                         <th>Name</th>
+                        <th>Rate</th>
                         <th>subtotal</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach ($add_ons as $id => $add_on) { ?>
                         <tr data-id="<?php echo $id; ?>">
-                            <td><?php echo $add_on['name']; ?></td>
+                            <td><?php echo getNameTdStr($add_on, $days); ?></td>
                             <td><?php echo makePriceString($add_on['cost']); ?></td>
+                            <td><?php echo makePriceString(getAddOnCostForTotalDays($add_on, $days)); ?></td>
                         </tr>
                     <?php } ?>
                     <tr>
                         <td>Add-ons Subtotal</td>
-                        <td><?php echo makePriceString(array_sum(array_column($add_ons, 'cost'))); ?></td>
+                        <td></td>
+                        <td><?php echo makePriceString(getAddOnsSubTotal($reservation)); ?></td>
                     </tr>
                 </tbody>
             </table>
