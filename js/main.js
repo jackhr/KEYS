@@ -570,6 +570,9 @@ function pickUpDateIsSameAsReturnDate(data) {
 function pickUpDateIsAfterReturnDate(data) {
     const pickUpDay = getDayFromDate(data.pickUpDate.altValue);
     const returnDay = getDayFromDate(data.returnDate.altValue);
+    const pickUpYear = getYearFromDate(data.pickUpDate.altValue);
+    const returnYear = getYearFromDate(data.returnDate.altValue);
+    if (pickUpYear > returnYear) return true;
     return pickUpDay > returnDay && (data.pickUpDate.ts - 86400000 > data.returnDate.ts); // could be same day but different month;
 }
 
@@ -577,6 +580,12 @@ function getDayFromDate(dateStr) {
     // dateStr = "April 24, 2024 10:00 am"
     if (!dateStr) return;
     return Number(dateStr.split(',')[0].split(' ')[1]);
+}
+
+function getYearFromDate(dateStr) {
+    // dateStr = "April 24, 2024 10:00 am"
+    if (!dateStr) return;
+    return Number(dateStr.split(', ')[1].split(' ')[0]);
 }
 
 function goToAddOns() {
