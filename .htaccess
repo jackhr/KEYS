@@ -7,6 +7,7 @@
 </IfModule>
 # php -- END cPanel-generated handler, do not edit
 
+# Force prepend of www. to domain name
 RewriteEngine On
 RewriteCond %{HTTP_HOST} !^www\.
 RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [R=301,L]
