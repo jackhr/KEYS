@@ -2,7 +2,7 @@
 
 include_once 'helpers.php';
 
-if (!!$order_request) {
+if (isset($order_request) && !!$order_request) {
     $apply_discount = false;
     $days = getDifferenceInDays($order_request['pick_up'], $order_request['drop_off']);
     $price_day = (int)$vehicle['price_day_USD'];

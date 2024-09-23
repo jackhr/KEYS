@@ -8,6 +8,16 @@ $base_title = "The Keys Car Rental";
 
 $title = isset($title_suffix) ? $base_title .= " | " . $title_suffix : $title;
 
+$page_lookup = [
+    "about" => "../",
+    "reservation" => "../",
+    "confirmation" => "../",
+    "contact" => "../",
+    "faq" => "../",
+];
+
+$style_prefix = $page_lookup[$page] ?? "";
+
 ?>
 
 <!DOCTYPE html>
@@ -62,7 +72,7 @@ $title = isset($title_suffix) ? $base_title .= " | " . $title_suffix : $title;
     <!-- favicon end -->
     <title><?php echo $title ?></title>
     <link type="text/css" rel="stylesheet" href="/styles/main.css">
-    <?php if (isset($page) && file_exists("styles/{$page}.css")) { ?>
+    <?php if (isset($page) && file_exists("{$style_prefix}styles/{$page}.css")) { ?>
         <link type="text/css" rel="stylesheet" href="/styles/<?php echo $page ?>.css">
     <?php }
     if (isset($extra_css)) { ?>
@@ -101,10 +111,10 @@ $title = isset($title_suffix) ? $base_title .= " | " . $title_suffix : $title;
 
             <nav>
                 <a href="/">Home</a>
-                <a href="/book-now.php">Book Now</a>
-                <a href="/about.php">About</a>
-                <a href="/faq.php">FAQ</a>
-                <a href="/contact.php">Contact</a>
+                <a href="/book-now/">Book Now</a>
+                <a href="/about/">About</a>
+                <a href="/faq/">FAQ</a>
+                <a href="/contact/">Contact</a>
             </nav>
 
             <div id="hamburger-button">
@@ -122,10 +132,10 @@ $title = isset($title_suffix) ? $base_title .= " | " . $title_suffix : $title;
                 </svg>
                 <nav>
                     <a href="/">Home</a>
-                    <a href="/book-now.php">Book Now</a>
-                    <a href="/about.php">About</a>
-                    <a href="/faq.php">FAQ</a>
-                    <a href="/contact.php">Contact</a>
+                    <a href="/book-now/">Book Now</a>
+                    <a href="/about/">About</a>
+                    <a href="/faq/">FAQ</a>
+                    <a href="/contact/">Contact</a>
                 </nav>
             </div>
 

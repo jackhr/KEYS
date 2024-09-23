@@ -2,17 +2,16 @@
 
 session_start();
 
-
 if ($_GET['reset-data'] == 'true') {
     session_destroy();
-    header('Location: /book-now.php');
+    header('Location: /book-now');
 }
 
 $title_suffix = "Reservation";
 $page = "reservation";
 $description = "Book a car rental with The Keys Car Rental. Choose from a variety of vehicles and rental options. Reserve your car today.";
 
-include_once 'includes/header.php';
+include_once '../includes/header.php';
 
 $vehicles_arr = [];
 
@@ -245,7 +244,7 @@ if ($testing) {
                     <?php } ?>
                 </div>
             </div>
-            <?php include 'includes/reservation-summary.php'; ?>
+            <?php include '../includes/reservation-summary.php'; ?>
         </div>
     </div>
 </section>
@@ -332,7 +331,7 @@ if ($testing) {
                 </div>
                 <div class="continue-btn">Continue Reservation</div>
             </div>
-            <?php include 'includes/reservation-summary.php'; ?>
+            <?php include '../includes/reservation-summary.php'; ?>
         </div>
     </div>
 </section>
@@ -387,9 +386,9 @@ if ($testing) {
                     <div class="continue-btn">Send Request</div>
                 </div>
             </div>
-            <?php include 'includes/reservation-summary.php'; ?>
+            <?php include '../includes/reservation-summary.php'; ?>
         </div>
 </section>
 
 
-<?php include_once 'includes/footer.php'; ?>
+<?php include_once '../includes/footer.php'; ?>

@@ -4,7 +4,9 @@ $title_suffix = "Contact";
 $page = "contact";
 $description = "Contact The Keys Car Rental for more information about our services, vehicles, and more.";
 
-include_once 'includes/header.php';
+$test = true;
+
+include_once '../includes/header.php';
 
 ?>
 
@@ -67,4 +69,4 @@ include_once 'includes/header.php';
 </section>
 
 
-<?php include_once 'includes/footer.php'; ?>
+<?php include_once '../includes/footer.php'; ?>

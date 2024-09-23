@@ -4,7 +4,7 @@ $title_suffix = "About";
 $page = "about";
 $description = "Learn more about The Keys Car Rental. Find out about our history, mission, and more.";
 
-include_once 'includes/header.php';
+include_once '../includes/header.php';
 
 ?>
 
@@ -42,4 +42,4 @@ include_once 'includes/header.php';
 </section>
 
 
-<?php include_once 'includes/footer.php'; ?>
+<?php include_once '../includes/footer.php'; ?>

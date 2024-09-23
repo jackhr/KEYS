@@ -156,7 +156,7 @@ while ($row = mysqli_fetch_assoc($result)) $vehicles_arr[] = $row;
     <div class="inner">
         <div id="cars">
             <?php foreach ($vehicles_arr as $vehicle) { ?>
-                <a class="car-container" href="/book-now.php?vehicle_id=<?php echo $vehicle['id']; ?>">
+                <a class="car-container" href="/book-now/?vehicle_id=<?php echo $vehicle['id']; ?>">
                     <div class="overlay">
                         <div></div>
                     </div>
@@ -205,7 +205,7 @@ while ($row = mysqli_fetch_assoc($result)) $vehicles_arr[] = $row;
                 </a>
             <?php } ?>
         </div>
-        <a href="/book-now.php">BOOK NOW</a>
+        <a href="/book-now/">BOOK NOW</a>
     </div>
 </section>
 
