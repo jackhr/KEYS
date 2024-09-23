@@ -19,6 +19,14 @@ try {
         ]);
     }
 
+    $debugging = isset($debugging_email_string);
+
+    if ($debugging) {
+        ini_set('display_errors', 1);
+        ini_set('display_startup_errors', 1);
+        error_reporting(E_ALL);
+    }
+
     // Get data sent via front end fetch request
 
     $first_name = $data["first-name"];
@@ -84,11 +92,19 @@ try {
     // Send email to client
     $mail_res_client = mail($email, $subject, $body, $headers);
 
-    // Send email to Admin
-    $to = "tristanhughes719@gmail.com,info@keyscarrentalantigua.com,jc2o@mac.com,jrainey@tropicalstudios.com";
-    $mail_res_admin = mail($to, $subject, $body, $headers);
+    // determine admin email string
+    if ($debugging) {
+        $admin_email_str = $debugging_email_string;
+    } else if (isset($testing_email_string)) {
+        $admin_email_str = $testing_email_string;
+    } else {
+        $admin_email_str = $email_string;
+    }
 
-    session_destroy();
+    // Send email to Admin
+    $mail_res_admin = mail($admin_email_str, $subject, $body, $headers);
+
+    if ($destory_session_after_ordering === true) session_destroy();
 
     respond([
         "success" => true,
