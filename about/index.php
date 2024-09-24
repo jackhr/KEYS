@@ -3,6 +3,21 @@
 $title_suffix = "About";
 $page = "about";
 $description = "Learn about The Keys Car Rental Antigua. We offer quality vehicles and reliable rentals for a convenient stay. Learn our history and commitment to customer satisfaction.";
+$structured_data = [
+    [
+        "@context" => "https://schema.org",
+        "@type" => "AboutPage",
+        "name" => "The Keys Car Rental | About",
+        "description" => $description,
+        "url" => "https://www.keyscarrentalantigua.com/about/",
+        "publisher" => [
+            "@type" => "Organization",
+            "name" => "The Keys Car Rental",
+            "logo" => "https://www.keyscarrentalantigua.com/logo.avif",
+            "url" => "https://www.keyscarrentalantigua.com/"
+        ]
+    ]
+];
 
 include_once '../includes/header.php';
 

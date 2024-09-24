@@ -3,8 +3,40 @@
 $title_suffix = "Contact";
 $page = "contact";
 $description = "Get in touch with The Keys Car Rental in Antigua via phone, email, or our contact form. We're open 7 days a week to assist you with your car rental needs.";
+$structured_data = [
+    [
+        "@context" => "https://schema.org",
+        "@type" => "ContactPage",
+        "name" => "The Keys Car Rental | Contact",
+        "description" => $description,
+        "url" => "https://www.keyscarrentalantigua.com/contact/",
+        "contactPoint" => [
+            "@type" => "ContactPoint",
+            "telephone" => "+1-268-771-1891",
+            "contactType" => "Customer Service",
+            "availableLanguage" => "English"
+        ]
+    ],
+    [
+        "@context" => "https://schema.org",
+        "@type" => "CarRental",
+        "name" => "The Keys Car Rental",
+        "description" => "Rent affordable and well-maintained cars in Antigua and Barbuda.",
+        "image" => "https://www.keyscarrentalantigua.com/logo.avif",
+        "url" => "https://www.keyscarrentalantigua.com/",
+        "address" => [
+            "@type" => "PostalAddress",
+            "streetAddress" => "Herbert's road",
+            "addressLocality" => "Piggots",
+            "addressRegion" => "Antigua",
+            "postalCode" => "",
+            "addressCountry" => "AG"
+        ],
+        "telephone" => "+1-268-771-1891",
+        "openingHours" => "Mo-Su 08:00-18:00"
+    ]
+];
 
-$test = true;
 
 include_once '../includes/header.php';
 

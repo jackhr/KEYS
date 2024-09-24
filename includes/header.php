@@ -1,8 +1,8 @@
 <?php
 
-include 'connection.php';
+include_once 'connection.php';
 
-$description = isset($description) ? $description : "Welcome to The Keys Car Rental. We offer a wide selection of vehicles for rent. Book your car today!";
+$description = isset($description) ? $description : "The Keys Car Rental Antigua offers affordable, well-maintained vehicles. Enjoy online booking and exceptional customer service. Rent a car in Antigua today!";
 
 $base_title = "The Keys Car Rental";
 
@@ -118,6 +118,18 @@ $load_flatpick = !!$flatpick_load_lookup[$page];
         <script src="/plugins/flatpickr/js/flatpickr.v4.6.13.min.js" defer></script>
     <?php } ?>
     <!-- END PLUGINS -->
+
+    <!-- BEGIN STRUCTURED DATA -->
+    <?php
+    if (isset($structured_data) && is_array($structured_data)) {
+        foreach ($structured_data as $data) {
+            echo '<script type="application/ld+json">';
+            echo json_encode($data, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+            echo '</script>';
+        }
+    }
+    ?>
+    <!-- END STRUCTURED DATA -->
 
     <script src="/js/main.min.js" defer></script>
 </head>

@@ -2,7 +2,9 @@
 
 session_start();
 
-if ($_GET['reset-data'] == 'true') {
+include_once '../includes/connection.php';
+
+if (isset($_GET['reset-data']) && $_GET['reset-data'] == 'true') {
     session_destroy();
     header('Location: /book-now');
 }
@@ -10,8 +12,6 @@ if ($_GET['reset-data'] == 'true') {
 $title_suffix = "Reservation";
 $page = "book-now";
 $description = "Reserve your car with The Keys Car Rental in Antigua. Choose from reliable vehicles, add extras, and book online today for affordable, dependable service.";
-
-include_once '../includes/header.php';
 
 $vehicles_arr = [];
 
@@ -22,6 +22,79 @@ while ($row = mysqli_fetch_assoc($vehicles_result)) $vehicles_arr[] = $row;
 $add_ons_query = "SELECT * FROM add_ons";
 $add_ons_result = mysqli_query($con, $add_ons_query);
 while ($row = mysqli_fetch_assoc($add_ons_result)) $add_ons_arr[] = $row;
+
+$structured_data = [];
+
+foreach ($vehicles_arr as $vehicle) {
+    $structured_data[] = [
+        "@context" => "https://schema.org",
+        "@type" => "Product",
+        "name" => $vehicle['name'],
+        "description" => $vehicle['type'] . " with room for " . $vehicle['people'] . " people.",
+        "image" => "https://www.keyscarrentalantigua.com/assets/images/vehicles/" . $vehicle['slug'] . ".avif",
+        "brand" => [
+            "@type" => "Brand",
+            "name" => explode(" ", $vehicle['name'])[0]
+        ],
+        "offers" => [
+            "@type" => "Offer",
+            "price" => $vehicle['price_day_USD'],
+            "priceCurrency" => "USD",
+            "availability" => "https://schema.org/" . ($vehicle['showing'] == "1" ? "InStock" : "OutOfStock"),
+        ],
+        "additionalProperty" => [
+            [
+                "@type" => "PropertyValue",
+                "name" => "Transmission",
+                "value" => $vehicle['manual'] == "1" ? "Manual" : "Automatic"
+            ],
+            [
+                "@type" => "PropertyValue",
+                "name" => "Air Conditioning",
+                "value" => $vehicle['ac'] == "1" ? "Yes" : "No"
+            ],
+            [
+                "@type" => "PropertyValue",
+                "name" => "4WD",
+                "value" => $vehicle['4wd'] == "1" ? "Yes" : "No"
+            ],
+            [
+                "@type" => "PropertyValue",
+                "name" => "Seats",
+                "value" => $vehicle['people']
+            ],
+            [
+                "@type" => "PropertyValue",
+                "name" => "Doors",
+                "value" => $vehicle['doors']
+            ]
+        ]
+    ];
+}
+
+foreach ($add_ons_arr as $add_on) {
+    $structured_data[] = [
+        "@context" => "https://schema.org",
+        "@type" => "Product",
+        "name" => $add_on['name'],
+        "description" => strip_tags($add_on['description']),
+        "offers" => [
+            "@type" => "Offer",
+            "price" => $add_on['cost'],
+            "priceCurrency" => "USD",
+            "availability" => "https://schema.org/InStock"
+        ],
+        "additionalProperty" => [
+            [
+                "@type" => "PropertyValue",
+                "name" => "Fixed Price",
+                "value" => $add_on['fixed_price'] == "1" ? "Yes" : "No"
+            ]
+        ]
+    ];
+}
+
+include_once '../includes/header.php';
 
 if (isset($_GET['itinerary'])) {
     $_SESSION['reservation']['itinerary'] = $_GET['itinerary'];
@@ -188,8 +261,8 @@ if ($testing) {
                                     <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" />
                                 </svg>
                                 <div class="custom-select-options">
-                                    <span <?php echo $pick_up_location === "Choose Office" ? 'class="selected"' : "" ?>>Choose Office</span>
-                                    <span <?php echo $pick_up_location === "Airport" ? 'class="selected"' : "" ?>>Airport</span>
+                                    <span <?php echo (isset($pick_up_location) && $pick_up_location === "Choose Office") ? 'class="selected"' : "" ?>>Choose Office</span>
+                                    <span <?php echo (isset($pick_up_location) && $pick_up_location === "Airport") ? 'class="selected"' : "" ?>>Airport</span>
                                 </div>
                             </div>
                         </div>

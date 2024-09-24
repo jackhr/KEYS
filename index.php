@@ -2,7 +2,40 @@
 
 $title_suffix = "Home";
 $page = "index";
-$description = "The Keys Car Rental Antigua offers affordable, well-maintained vehicles. Enjoy online booking and exceptional customer service. Rent a car in Antigua today!";
+$description = "The Keys Car Rental offers affordable, well-maintained vehicles. Enjoy online booking and exceptional customer service. Rent a car in Antigua today!";
+$structured_data = [
+    [
+        "@context" => "https://schema.org",
+        "@type" => "WebPage",
+        "name" => "The Keys Car Rental",
+        "description" => $description,
+        "url" => "https://www.keyscarrentalantigua.com/",
+        "publisher" => [
+            "@type" => "Organization",
+            "name" => "The Keys Car Rental",
+            "logo" => "https://www.keyscarrentalantigua.com/assets/images/logo.avif"
+        ]
+    ],
+    [
+        "@context" => "https://schema.org",
+        "@type" => "CarRental",
+        "name" => "The Keys Car Rental",
+        "description" => "Rent affordable and well-maintained cars in Antigua and Barbuda.",
+        "image" => "https://www.keyscarrentalantigua.com/logo.avif",
+        "url" => "https://www.keyscarrentalantigua.com/",
+        "address" => [
+            "@type" => "PostalAddress",
+            "streetAddress" => "Herbert's road",
+            "addressLocality" => "Piggots",
+            "addressRegion" => "Antigua",
+            "postalCode" => "",
+            "addressCountry" => "AG"
+        ],
+        "telephone" => "+1-268-771-1891",
+        "openingHours" => "Mo-Su 08:00-18:00"
+    ]
+];
+
 include_once 'includes/header.php';
 
 $vehicles_arr = [];
