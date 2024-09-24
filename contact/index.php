@@ -2,7 +2,7 @@
 
 $title_suffix = "Contact";
 $page = "contact";
-$description = "Get in touch with The Keys Car Rental in Antigua. Contact us via phone, email, or the contact form for more information about our car rental services. We are open 7 days a week to assist you with your travel needs.";
+$description = "Get in touch with The Keys Car Rental in Antigua via phone, email, or our contact form. We're open 7 days a week to assist you with your car rental needs.";
 
 $test = true;
 

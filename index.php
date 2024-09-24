@@ -2,7 +2,7 @@
 
 $title_suffix = "Home";
 $page = "index";
-$description = "The Keys Car Rental Antigua offers a wide range of affordable, well-maintained vehicles for rent in Antigua and Barbuda. With convenient online booking, quality vehicles, and exceptional customer service, we ensure a hassle-free rental experience. Contact us today to rent a car in Antigua!";
+$description = "The Keys Car Rental Antigua offers affordable, well-maintained vehicles. Enjoy online booking and exceptional customer service. Rent a car in Antigua today!";
 include_once 'includes/header.php';
 
 $vehicles_arr = [];

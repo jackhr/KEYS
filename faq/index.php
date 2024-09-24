@@ -2,7 +2,7 @@
 
 $title_suffix = "FAQ";
 $page = "faq";
-$description = "Find answers to common questions about The Keys Car Rental. Learn about our rental requirements, payment options, insurance, child safety seats, driving in Antigua, and more.";
+$description = "Find answers to questions about The Keys Car Rental Antigua; Rental requirements, payment options, insurance, child safety seats, driving in Antigua, and more.";
 
 include_once '../includes/header.php';
 

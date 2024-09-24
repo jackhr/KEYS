@@ -9,7 +9,7 @@ if ($_GET['reset-data'] == 'true') {
 
 $title_suffix = "Reservation";
 $page = "book-now";
-$description = "Reserve your vehicle with The Keys Car Rental in Antigua. Choose from a range of vehicles, add optional extras, and confirm your booking online today. Enjoy affordable and reliable car rental services.";
+$description = "Reserve your car with The Keys Car Rental in Antigua. Choose from reliable vehicles, add extras, and book online today for affordable, dependable service.";
 
 include_once '../includes/header.php';
 
