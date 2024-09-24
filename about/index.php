@@ -2,7 +2,7 @@
 
 $title_suffix = "About";
 $page = "about";
-$description = "Learn more about The Keys Car Rental. Find out about our history, mission, and more.";
+$description = "Learn about The Keys Car Rental, a trusted provider of quality transportation services in Antigua. Whether you're visiting for the first time or returning home, we offer reliable car rentals to make your stay in Antigua more convenient. Discover our history, mission, and commitment to customer satisfaction.";
 
 include_once '../includes/header.php';
 
