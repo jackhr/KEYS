@@ -177,7 +177,7 @@ function generateEmailBody($first_name, $last_name, $country_region, $street, $t
                                                                         </tr>
                                                                     </tbody>
                                                                 </table>
-                                                                <p style="margin:0 0 16px;text-align: center;">Thanks for using <a href="http://www.keyscarrentalantigua.com/confirmation.php?key=' . $key . '" target="_blank">www.keyscarrentalantigua.com</a>!</p>
+                                                                <p style="margin:0 0 16px;text-align: center;">Thanks for using <a href="https://www.keyscarrentalantigua.com/confirmation.php?key=' . $key . '" target="_blank">www.keyscarrentalantigua.com</a>!</p>
                                                             </div>
                                                         </td>
                                                     </tr>
