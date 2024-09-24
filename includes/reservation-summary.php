@@ -10,7 +10,7 @@ if (isset($order_request) && !!$order_request) {
         $apply_discount = true;
         $price_day = (int)$vehicle['price_day_low_USD'];
     }
-    $vehicle['imgSrc'] = "/assets/images/vehicles/{$vehicle['slug']}.jpg";
+    $vehicle['imgSrc'] = "/assets/images/vehicles/{$vehicle['slug']}.avif";
     $vehicle_name = $vehicle['name'];
     $vehicle_type = $vehicle['type'];
     $vehicle_img_src = $vehicle['imgSrc'];

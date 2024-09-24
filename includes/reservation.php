@@ -22,7 +22,7 @@ if ($data['action'] === 'vehicle') {
     $vehicle_query = "SELECT * FROM vehicles WHERE id = {$data['id']}";
     $vehicle_result = mysqli_query($con, $vehicle_query);
     $vehicle = mysqli_fetch_assoc($vehicle_result);
-    $vehicle['imgSrc'] = "/assets/images/vehicles/{$vehicle['slug']}.jpg";
+    $vehicle['imgSrc'] = "/assets/images/vehicles/{$vehicle['slug']}.avif";
     $_SESSION['reservation']['vehicle'] = $vehicle;
     $data = $_SESSION['reservation'];
 }

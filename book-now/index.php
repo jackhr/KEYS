@@ -31,7 +31,7 @@ if (isset($_GET['vehicle_id'])) {
     $vehicle_query = "SELECT * FROM vehicles WHERE id = {$_GET['vehicle_id']}";
     $vehicle_result = mysqli_query($con, $vehicle_query);
     $vehicle_response = mysqli_fetch_assoc($vehicle_result);
-    $vehicle_response['imgSrc'] = "/assets/images/vehicles/{$vehicle_response['slug']}.jpg";
+    $vehicle_response['imgSrc'] = "/assets/images/vehicles/{$vehicle_response['slug']}.avif";
     $_SESSION['reservation']['vehicle'] = $vehicle_response;
     if (isset($_SESSION['reservation']['step'])) {
         if ($_SESSION['reservation']['step'] == 2) $_SESSION['reservation']['step'] = 1;
@@ -257,7 +257,7 @@ if ($testing) {
                 $active_vehicle = $vehicle['id'] == $v['id'];
             ?>
                 <div class="vehicle-container <?php echo $active_vehicle ? "active" : ""; ?>" data-vehicle-id="<?php echo $v['id']; ?>">
-                    <img src="/assets/images/vehicles/<?php echo $v['slug']; ?>.jpg" alt="Car thumbnail">
+                    <img src="/assets/images/vehicles/<?php echo $v['slug']; ?>.avif" alt="Car thumbnail">
                     <div class="center">
                         <div>
                             <span class="vehicle-name"><?php echo $v['name']; ?></span>

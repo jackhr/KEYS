@@ -16,7 +16,7 @@
             </div>
             <div class="footer-logo">
                 <div>
-                    <img src="/assets/images/logo.png" alt="Site Logo">
+                    <img src="/assets/images/logo.avif" alt="Site Logo">
                 </div>
             </div>
             <div class="footer-contact">

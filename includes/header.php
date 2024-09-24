@@ -79,7 +79,7 @@ $load_flatpick = !!$flatpick_load_lookup[$page];
     <meta property="og:title" content="<?php echo $base_title ?>">
     <meta property="og:description" content="<?php echo $description; ?>">
     <meta property="og:type" content="Website">
-    <meta property="og:image" content="https://www.keyscarrentalantigua.com/assets/images/logo.png">
+    <meta property="og:image" content="https://www.keyscarrentalantigua.com/assets/images/logo.avif">
     <meta property="og:url" content="<?php echo $canonical_url; ?>">
     <link rel="canonical" href="<?php echo $canonical_url; ?>" />
     <!-- SEO END -->
@@ -135,7 +135,7 @@ $load_flatpick = !!$flatpick_load_lookup[$page];
         <div class="inner">
 
             <a href="/">
-                <img src="/assets/images/logo.png" alt="Website logo">
+                <img src="/assets/images/logo.avif" alt="Website logo">
             </a>
 
             <nav>

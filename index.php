@@ -200,7 +200,7 @@ while ($row = mysqli_fetch_assoc($result)) $vehicles_arr[] = $row;
                         </div>
                     </div>
                     <div class="bottom">
-                        <img loading="lazy" src="/assets/images/vehicles/<?php echo $vehicle['slug']; ?>.jpg" alt="Car thumbnail">
+                        <img loading="lazy" src="/assets/images/vehicles/<?php echo $vehicle['slug']; ?>.avif" alt="Car thumbnail">
                     </div>
                 </a>
             <?php } ?>
