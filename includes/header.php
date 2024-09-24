@@ -10,13 +10,15 @@ $title = isset($title_suffix) ? $base_title .= " | " . $title_suffix : $title;
 
 $page_lookup = [
     "about" => "../",
-    "reservation" => "../",
+    "book-now" => "../",
     "confirmation" => "../",
     "contact" => "../",
     "faq" => "../",
 ];
 
 $style_prefix = $page_lookup[$page] ?? "";
+$canonical_dir = $page === "index" ? "" : $page."/";
+$canonical_url = "https://www.keyscarrentalantigua.com/{$canonical_dir}index.php"
 
 ?>
 
@@ -59,10 +61,18 @@ $style_prefix = $page_lookup[$page] ?? "";
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+
+    <!-- SEO BEGIN -->
     <meta name="keywords" content="antigua car rental, affordable car rentals, car hire, vehicle rental, antigua rent a car, rent a car, car rental near me, airport car rental, luxury car hire, cheap car rental, car booking, st. john's, online car rental, city car rental, car rental services, weekend car rental, business car hire, caribbean rentals, antigua, antigua and barbuda, antigua rentals">
     <meta name="description" content="<?php echo $description ?>">
     <meta property="og:title" content="<?php echo $base_title ?>">
     <meta property="og:description" content="<?php echo $description; ?>">
+    <meta property="og:type" content="Website">
+    <meta property="og:image" content="https://www.keyscarrentalantigua.com/assets/images/logo.png">
+    <meta property="og:url" content="<?php echo $canonical_url; ?>">
+    <link rel="canonical" href="<?php echo $canonical_url; ?>" />
+    <!-- SEO END -->
+
     <!-- favicon begin -->
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon/favicon-32x32.png">

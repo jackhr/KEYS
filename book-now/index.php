@@ -8,7 +8,7 @@ if ($_GET['reset-data'] == 'true') {
 }
 
 $title_suffix = "Reservation";
-$page = "reservation";
+$page = "book-now";
 $description = "Book a car rental with The Keys Car Rental. Choose from a variety of vehicles and rental options. Reserve your car today.";
 
 include_once '../includes/header.php';
