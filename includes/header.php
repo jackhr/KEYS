@@ -27,7 +27,7 @@ $flatpick_load_lookup = [
 
 $style_prefix = $page_lookup[$page] ?? "";
 $canonical_dir = $page === "index" ? "" : $page . "/";
-$canonical_url = "https://www.keyscarrentalantigua.com/{$canonical_dir}index.php";
+$canonical_url = "https://www.keyscarrentalantigua.com/{$canonical_dir}";
 $load_swal = !!$swal_load_lookup[$page];
 $load_flatpick = !!$flatpick_load_lookup[$page];
 
