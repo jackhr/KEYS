@@ -281,7 +281,13 @@ $(function () {
             `;
         }
 
-        const rentalSubtotal = parseInt(priceDay) * getDifferenceInDays(reservation.itinerary.pickUpDate.ts, reservation.itinerary.returnDate.ts);
+        let daysDifference = 1;
+
+        if (reservation.itinerary) {
+            daysDifference = getDifferenceInDays(reservation.itinerary.pickUpDate.ts, reservation.itinerary.returnDate.ts);
+        }
+
+        const rentalSubtotal = parseInt(priceDay) * daysDifference;
 
         $("#reservation-summary div.add-ons.summary").html(html);
         $(".reservation-step.vehicle-add-on .body > div:last-child p").html(spans || "--");
