@@ -15,10 +15,21 @@ $page_lookup = [
     "contact" => "../",
     "faq" => "../",
 ];
+$swal_load_lookup = [
+    "index" => 1,
+    "book-now" => 1,
+    "contact" => 1,
+];
+$flatpick_load_lookup = [
+    "index" => 1,
+    "book-now" => 1,
+];
 
 $style_prefix = $page_lookup[$page] ?? "";
 $canonical_dir = $page === "index" ? "" : $page . "/";
-$canonical_url = "https://www.keyscarrentalantigua.com/{$canonical_dir}index.php"
+$canonical_url = "https://www.keyscarrentalantigua.com/{$canonical_dir}index.php";
+$load_swal = !!$swal_load_lookup[$page];
+$load_flatpick = !!$flatpick_load_lookup[$page];
 
 ?>
 
@@ -87,17 +98,26 @@ $canonical_url = "https://www.keyscarrentalantigua.com/{$canonical_dir}index.php
     if (isset($extra_css)) { ?>
         <link type="text/css" rel="stylesheet" href="/styles/min/<?php echo $extra_css ?>.min.css">
     <?php } ?>
-    
-    <!-- BEGIN PLUGINS -->
-    <link type="text/css" rel="stylesheet" href="/plugins/font-awesome/font-awesome.all.min.css">
-    <link type="text/css" rel="stylesheet" href="/plugins/sweetalert2/styles/sweetalert2.min.css">
-    <link type="text/css" rel="stylesheet" href="/plugins/flatpickr/styles/flatpickr.min.css">
-    <link type="text/css" rel="stylesheet" href="/plugins/flatpickr/styles/theme.min.css">
-    <script src="/plugins/jquery/jquery-3.7.1.min.js" defer></script>
-    <script src="/plugins/sweetalert2/js/sweetalert2.all.min.js" defer></script>
-    <script src="/plugins/flatpickr/js/flatpickr.v4.6.13.min.js" defer></script>
+
+    <!-- BEGIN FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <!-- END PLUGINS -->
-    
+
+    <!-- BEGIN PLUGINS -->
+    <script src="/plugins/jquery/jquery-3.7.1.min.js" defer></script>
+    <?php if ($load_swal) { ?>
+        <link type="text/css" rel="stylesheet" href="/plugins/sweetalert2/styles/sweetalert2.min.css">
+        <script src="/plugins/sweetalert2/js/sweetalert2.all.min.js" defer></script>
+    <?php } ?>
+    <?php if ($load_flatpick) { ?>
+        <link type="text/css" rel="stylesheet" href="/plugins/flatpickr/styles/flatpickr.min.css">
+        <link type="text/css" rel="stylesheet" href="/plugins/flatpickr/styles/theme.min.css">
+        <script src="/plugins/flatpickr/js/flatpickr.v4.6.13.min.js" defer></script>
+    <?php } ?>
+    <!-- END PLUGINS -->
+
     <script src="/js/main.min.js" defer></script>
 </head>
 
