@@ -87,18 +87,18 @@ $canonical_url = "https://www.keyscarrentalantigua.com/{$canonical_dir}index.php
     if (isset($extra_css)) { ?>
         <link type="text/css" rel="stylesheet" href="/styles/min/<?php echo $extra_css ?>.min.css">
     <?php } ?>
-    <script defer src="/js/main.min.js"></script>
-
+    
     <!-- BEGIN PLUGINS -->
     <link type="text/css" rel="stylesheet" href="/plugins/font-awesome/font-awesome.all.min.css">
     <link type="text/css" rel="stylesheet" href="/plugins/sweetalert2/styles/sweetalert2.min.css">
     <link type="text/css" rel="stylesheet" href="/plugins/flatpickr/styles/flatpickr.min.css">
     <link type="text/css" rel="stylesheet" href="/plugins/flatpickr/styles/theme.min.css">
-    <script src="/plugins/jquery/jquery-3.7.1.min.js"></script>
-    <script src="/plugins/sweetalert2/js/sweetalert2.all.min.js"></script>
-    <script src="/plugins/flatpickr/js/flatpickr.v4.6.13.min.js"></script>
+    <script src="/plugins/jquery/jquery-3.7.1.min.js" defer></script>
+    <script src="/plugins/sweetalert2/js/sweetalert2.all.min.js" defer></script>
+    <script src="/plugins/flatpickr/js/flatpickr.v4.6.13.min.js" defer></script>
     <!-- END PLUGINS -->
-
+    
+    <script src="/js/main.min.js" defer></script>
 </head>
 
 <body id="<?php echo $page ?>-page">
