@@ -14,6 +14,7 @@ $page_lookup = [
     "confirmation" => "../",
     "contact" => "../",
     "faq" => "../",
+    "index" => ""
 ];
 $swal_load_lookup = [
     "index" => 1,

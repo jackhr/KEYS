@@ -7,70 +7,99 @@ include 'connection.php';
 $json = file_get_contents('php://input');
 $data = json_decode($json, true);
 
+// Check if JSON was properly decoded
+if (json_last_error() !== JSON_ERROR_NONE) {
+    echo json_encode(['error' => 'Invalid JSON input']);
+    exit;
+}
+
 if (isset($data['step'])) {
     $_SESSION['reservation']['step'] = $data['step'];
     unset($data['step']);
 }
 
-if ($data['action'] === 'itinerary') {
+if (isset($data['action']) && $data['action'] === 'itinerary') {
     unset($data['action']);
     $_SESSION['reservation']['itinerary'] = $data;
 }
 
-if ($data['action'] === 'vehicle') {
+if (isset($data['action']) && $data['action'] === 'vehicle') {
     unset($data['action']);
-    $vehicle_query = "SELECT * FROM vehicles WHERE id = {$data['id']}";
-    $vehicle_result = mysqli_query($con, $vehicle_query);
-    $vehicle = mysqli_fetch_assoc($vehicle_result);
-    $vehicle['imgSrc'] = "/assets/images/vehicles/{$vehicle['slug']}.avif";
-    $_SESSION['reservation']['vehicle'] = $vehicle;
-    $data = $_SESSION['reservation'];
-}
 
-if ($data['action'] === 'add_add_on') {
-    $add_on_query = "SELECT * FROM add_ons WHERE id = {$data['id']}";
-    $add_on_result = mysqli_query($con, $add_on_query);
-    $add_on = mysqli_fetch_assoc($add_on_result);
+    // Use prepared statements to prevent SQL injection
+    $stmt = $con->prepare("SELECT * FROM vehicles WHERE id = ?");
+    $stmt->bind_param('i', $data['id']);  // Assuming the id is an integer
+    $stmt->execute();
+    $vehicle_result = $stmt->get_result();
+    $vehicle = $vehicle_result->fetch_assoc();
 
-    // merge new add on with current addons on the session object and sort the array by id
-    $_SESSION['reservation']['add_ons'][$add_on['id']] = $add_on;
-    uasort($_SESSION['reservation']['add_ons'], function ($a, $b) {
-        return $a['id'] - $b['id'];
-    });
+    if ($vehicle) {
+        $vehicle['imgSrc'] = "/assets/images/vehicles/{$vehicle['slug']}.avif";
+        $_SESSION['reservation']['vehicle'] = $vehicle;
+    } else {
+        echo json_encode(['error' => 'Vehicle not found']);
+        exit;
+    }
 
     $data = $_SESSION['reservation'];
 }
 
-if ($data['action'] === 'remove_add_on') {
-    $add_on_query = "SELECT * FROM add_ons WHERE id = {$data['id']}";
-    $add_on_result = mysqli_query($con, $add_on_query);
-    $add_on = mysqli_fetch_assoc($add_on_result);
+if (isset($data['action']) && $data['action'] === 'add_add_on') {
+    $stmt = $con->prepare("SELECT * FROM add_ons WHERE id = ?");
+    $stmt->bind_param('i', $data['id']);
+    $stmt->execute();
+    $add_on_result = $stmt->get_result();
+    $add_on = $add_on_result->fetch_assoc();
 
-    // remove add_on from current addons on the session object
-    $_SESSION['reservation']['add_ons'] = array_filter($_SESSION['reservation']['add_ons'], function ($a) use ($add_on) {
-        return $a['id'] !== $add_on['id'];
-    });
+    if ($add_on) {
+        // Merge new add-on with current add-ons in the session object and sort by id
+        $_SESSION['reservation']['add_ons'][$add_on['id']] = $add_on;
+        uasort($_SESSION['reservation']['add_ons'], function ($a, $b) {
+            return $a['id'] - $b['id'];
+        });
+    } else {
+        echo json_encode(['error' => 'Add-on not found']);
+        exit;
+    }
 
     $data = $_SESSION['reservation'];
 }
 
-if ($data['action'] === 'reset_reservation') {
+if (isset($data['action']) && $data['action'] === 'remove_add_on') {
+    $stmt = $con->prepare("SELECT * FROM add_ons WHERE id = ?");
+    $stmt->bind_param('i', $data['id']);
+    $stmt->execute();
+    $add_on_result = $stmt->get_result();
+    $add_on = $add_on_result->fetch_assoc();
+
+    if ($add_on && isset($_SESSION['reservation']['add_ons'][$add_on['id']])) {
+        // Remove add-on from current add-ons in the session object
+        unset($_SESSION['reservation']['add_ons'][$add_on['id']]);
+    } else {
+        echo json_encode(['error' => 'Add-on not found or not in session']);
+        exit;
+    }
+
+    $data = $_SESSION['reservation'];
+}
+
+if (isset($data['action']) && $data['action'] === 'reset_reservation') {
     unset($_SESSION['reservation']);
 }
 
-if ($data['action'] === 'reset_itinerary') {
+if (isset($data['action']) && $data['action'] === 'reset_itinerary') {
     unset($_SESSION['reservation']['itinerary']);
 }
 
-if ($data['action'] === 'reset_car_selection') {
-    unset($_SESSION['reservation']['car']);
+if (isset($data['action']) && $data['action'] === 'reset_car_selection') {
+    unset($_SESSION['reservation']['vehicle']);
 }
 
-if ($data['action'] === 'reset_add_ons') {
+if (isset($data['action']) && $data['action'] === 'reset_add_ons') {
     unset($_SESSION['reservation']['add_ons']);
 }
 
-if ($data['action'] === 'reset_contact_info') {
+if (isset($data['action']) && $data['action'] === 'reset_contact_info') {
     unset($_SESSION['reservation']['contact_info']);
 }
 
