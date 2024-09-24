@@ -17,7 +17,7 @@ $page_lookup = [
 ];
 
 $style_prefix = $page_lookup[$page] ?? "";
-$canonical_dir = $page === "index" ? "" : $page."/";
+$canonical_dir = $page === "index" ? "" : $page . "/";
 $canonical_url = "https://www.keyscarrentalantigua.com/{$canonical_dir}index.php"
 
 ?>
@@ -80,14 +80,14 @@ $canonical_url = "https://www.keyscarrentalantigua.com/{$canonical_dir}index.php
     <link rel="manifest" href="/assets/images/favicon/site.webmanifest">
     <!-- favicon end -->
     <title><?php echo $title ?></title>
-    <link type="text/css" rel="stylesheet" href="/styles/main.css">
-    <?php if (isset($page) && file_exists("{$style_prefix}styles/{$page}.css")) { ?>
-        <link type="text/css" rel="stylesheet" href="/styles/<?php echo $page ?>.css">
+    <link type="text/css" rel="stylesheet" href="/styles/min/main.min.css">
+    <?php if (isset($page) && file_exists("{$style_prefix}styles/min/{$page}.min.css")) { ?>
+        <link type="text/css" rel="stylesheet" href="/styles/min/<?php echo $page ?>.min.css">
     <?php }
     if (isset($extra_css)) { ?>
-        <link type="text/css" rel="stylesheet" href="/styles/<?php echo $extra_css ?>.css">
+        <link type="text/css" rel="stylesheet" href="/styles/min/<?php echo $extra_css ?>.min.css">
     <?php } ?>
-    <script defer src="/js/main.js"></script>
+    <script defer src="/js/main.min.js"></script>
 
     <!-- BEGIN PLUGINS -->
     <link type="text/css" rel="stylesheet" href="/plugins/font-awesome/font-awesome.all.min.css">

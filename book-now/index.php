@@ -171,7 +171,7 @@ if ($testing) {
 
 <section id="itinerary-section" data-step="1" <?php if ($reservation['step'] != 1) echo 'style="display:none;"'; ?>>
     <div class="inner">
-        <h1>Reserve Your Vehicle</h1>
+        <h2>Reserve Your Vehicle</h2>
         <div class="reservation-flow-container">
             <div class="left">
                 <div>
@@ -251,7 +251,7 @@ if ($testing) {
 
 <section id="vehicle-selection-section" data-step="2" <?php echo $reservation['step'] != 2 ? 'style="display:none;"' : (isset($vehicle) ? 'style="display:none;"' : ""); ?>>
     <div class="inner">
-        <h1>Select Vehicle</h1>
+        <h2>Select Vehicle</h2>
         <div id="vehicles">
             <?php foreach ($vehicles_arr as $v) {
                 $active_vehicle = $vehicle['id'] == $v['id'];
@@ -260,7 +260,7 @@ if ($testing) {
                     <img src="/assets/images/vehicles/<?php echo $v['slug']; ?>.jpg" alt="Car thumbnail">
                     <div class="center">
                         <div>
-                            <h1 class="vehicle-name"><?php echo $v['name']; ?></h1>
+                            <span class="vehicle-name"><?php echo $v['name']; ?></span>
                             <span class="vehicle-type"><?php echo $v['type']; ?></span>
                         </div>
                         <div>
@@ -307,7 +307,7 @@ if ($testing) {
 
 <section id="vehicle-add-ons" data-step="2" <?php echo $reservation['step'] != 2 ? 'style="display:none;"' : (isset($vehicle) ? "" : 'style="display:none;"'); ?>>
     <div class="inner">
-        <h1>Vehicle Add-ons</h1>
+        <h2>Vehicle Add-ons</h2>
         <div class="reservation-flow-container">
             <div class="left">
                 <div id="add-ons">
@@ -338,7 +338,7 @@ if ($testing) {
 
 <section id="final-section" data-step="3" <?php if ($reservation['step'] != 3) echo 'style="display:none;"'; ?>>
     <div class="inner">
-        <h1>Final Details</h1>
+        <h2>Final Details</h2>
         <div class="reservation-flow-container">
             <div class="left">
                 <div id="final-details-form">

@@ -17,7 +17,7 @@ include_once '../includes/header.php';
         <div class="about-panel">
             <img src="/assets/images/misc/red-car-with-palm-trees-in-the-background.jpg" alt="">
             <div>
-                <h1>WELCOME TO THE KEYS CAR RENTAL</h1>
+                <h2>WELCOME TO THE KEYS CAR RENTAL</h2>
                 <p>The Keys Car Rental has been servicing the transport industry in Antigua for years and we are dedicated to growing our company as the tourism sector and economy of Antigua & Barbuda expands.</p>
                 <p>Whether you’re a new visitor to our islands or a national returning for a family gathering, we welcome all. The Keys Car Rental is here to provide quality transportation services customized to your specific needs.</p>
                 <em>— Tristan Hughes, Owner of The Keys Car Rental</em>
@@ -27,7 +27,7 @@ include_once '../includes/header.php';
         <div class="about-panel">
             <img src="/assets/images/misc/shirley-heights.jpg" alt="">
             <div>
-                <h1>WELCOME TO ANTIGUA</h1>
+                <h2>WELCOME TO ANTIGUA</h2>
                 <p>Antigua has so much to offer our visitors. We at Keys Car Rental want to make your visit one of discovery and exploration. Please don’t hesitate to ask us for guidance – we will do our best to point you in the right direction.</p>
                 <ul>
                     <li>365 Beaches to explore</li>

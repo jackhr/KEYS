@@ -9,10 +9,10 @@
     padding: 60px var(--general-padding);
 }
 
-#itinerary-section div.inner>h1,
-#vehicle-selection-section div.inner>h1,
-#vehicle-add-ons div.inner>h1,
-#final-section div.inner>h1 {
+#itinerary-section div.inner>h2,
+#vehicle-selection-section div.inner>h2,
+#vehicle-add-ons div.inner>h2,
+#final-section div.inner>h2 {
     margin   : 0 0 60px;
     font-size: 26px;
 }
@@ -349,9 +349,11 @@
 }
 
 .vehicle-name {
-    margin   : 0;
-    font-size: 20px;
-
+    margin        : 0;
+    font-size     : 20px;
+    display       : block;
+    font-weight   : 700;
+    text-transform: uppercase;
 }
 
 .vehicle-type {

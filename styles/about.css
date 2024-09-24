@@ -1,5 +1,5 @@
 #about-page .general-header {
-    background-image     : url("/assets/images/bg/sunset-on-lagoon.jpg");
+    background-image: url("/assets/images/bg/sunset-on-lagoon.jpg");
 }
 
 #about-section {
@@ -26,7 +26,7 @@
     object-fit: cover;
 }
 
-.about-panel h1 {
+.about-panel h2 {
     font-size     : 25px;
     font-weight   : 700;
     line-height   : 30px;

@@ -5,7 +5,7 @@ session_start();
 $title_suffix = "Confirmation";
 $page = "confirmation";
 $description = "Thank you for choosing The Keys Car Rental. Your order has been requested.";
-$extra_css = "reservation";
+$extra_css = "book-now";
 
 include_once '../includes/header.php';
 
@@ -47,7 +47,7 @@ if (!$order_request) {
 
 <section id="confirmation-section">
     <div class="inner">
-        <h1>Thank you! Your order has been requested.</h1>
+        <h2>Thank you! Your order has been requested.</h2>
 
         <div class="reservation-flow-container">
             <?php include '../includes/reservation-summary.php'; ?>

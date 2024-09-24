@@ -593,13 +593,13 @@ html.viewing-hamburger-menu #hamburger-nav {
     flex-direction: column;
 }
 
-.car-container .top .left h1 {
+.car-container .top .left h2 {
     margin        : 0;
     font-size     : 22px;
     text-transform: capitalize;
 }
 
-.car-container .top .left h2 {
+.car-container .top .left h3 {
     margin   : 0;
     font-size: 14px;
 }

@@ -16,7 +16,7 @@ include_once '../includes/header.php';
 
 <section id="contact-card-section">
     <div class="inner">
-        <h1>The Keys Car Rental</h1>
+        <h2>The Keys Car Rental</h2>
 
         <div class="contact-brief-info">
             <span>Herbert’s road</span>
@@ -45,7 +45,7 @@ include_once '../includes/header.php';
 
 <section id="contact-form-section">
     <div class="inner">
-        <h1>SEND US AN EMAIL</h1>
+        <h2>SEND US AN EMAIL</h2>
         <form action="">
             <div class="left">
                 <div class="input-container">

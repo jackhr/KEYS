@@ -100,7 +100,7 @@ while ($row = mysqli_fetch_assoc($result)) $vehicles_arr[] = $row;
                 <div class="feature-info">
                     <h2>Driving In Antigua</h2>
                     <p>Welcome to our enchanting island nation! Our aim is to enrich your journey as you explore and uncover the beauty of Antigua. As a unique characteristic, we drive on the left, adhering to international driving norms and regulations to ensure a seamless and safe experience for all travelers.
-</p>
+                    </p>
                 </div>
             </div>
             <div class="feature-container">
@@ -162,8 +162,8 @@ while ($row = mysqli_fetch_assoc($result)) $vehicles_arr[] = $row;
                     </div>
                     <div class="top">
                         <div class="left">
-                            <h1><?php echo $vehicle['name']; ?></h1>
-                            <h2><?php echo $vehicle['type']; ?></h2>
+                            <h2><?php echo $vehicle['name']; ?></h2>
+                            <h3><?php echo $vehicle['type']; ?></h3>
                             <div>
                                 <span>FROM</span>
                                 <span>USD$<?php echo $vehicle['price_day_USD']; ?><span style="font-size: 15px;">/</span></span>
