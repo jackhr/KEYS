@@ -257,7 +257,7 @@ if ($testing) {
                 $active_vehicle = $vehicle['id'] == $v['id'];
             ?>
                 <div class="vehicle-container <?php echo $active_vehicle ? "active" : ""; ?>" data-vehicle-id="<?php echo $v['id']; ?>">
-                    <img src="/assets/images/vehicles/<?php echo $v['slug']; ?>.avif" alt="Car thumbnail">
+                    <img src="/assets/images/vehicles/<?php echo $v['slug']; ?>.avif" alt="<?php echo $v['name']; ?> thumbnail">
                     <div class="center">
                         <div>
                             <span class="vehicle-name"><?php echo $v['name']; ?></span>

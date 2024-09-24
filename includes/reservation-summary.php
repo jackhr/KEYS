@@ -86,7 +86,7 @@ if (isset($order_request) && !!$order_request) {
 
     <div class="car summary">
         <?php if (isset($vehicle)) { ?>
-            <img src="<?php echo $vehicle['imgSrc']; ?>" alt="">
+            <img src="<?php echo $vehicle['imgSrc']; ?>" alt="<?php echo $vehicle['name']; ?> thumbnail">
         <?php } else { ?>
             <div>+</div>
             <div>
