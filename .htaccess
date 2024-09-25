@@ -19,4 +19,4 @@ RewriteRule ^(.*)index.php$ /$1 [R=301,L]
 # Redirect old pages
 RewriteRule ^terms(/.*)?$ https://www.keyscarrentalantigua.com/ [R=301,L]
 RewriteRule ^(product|testimonial)(/.*)?$ https://www.keyscarrentalantigua.com/ [R=301,L]
-RewriteRule ^(reservation|date-reservation)(/.*)?$ https://www.keyscarrentalantigua.com/book-now/ [R=301,L]
+RewriteRule ^(book-now|date-reservation)(/.*)?$ https://www.keyscarrentalantigua.com/reservation/ [R=301,L]
