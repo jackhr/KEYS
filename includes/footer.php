@@ -9,6 +9,7 @@
                 <ul>
                     <li><a href="/">Home</a></li>
                     <li><a href="/reservation/">Book Now</a></li>
+                    <li class="confirmation-link"><a href="/confirmation/">Your Reservation</a></li>
                     <li><a href="/about/">About</a></li>
                     <li><a href="/faq/">FAQ</a></li>
                     <li><a href="/contact/">Contact</a></li>
