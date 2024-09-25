@@ -10,7 +10,7 @@ if (isset($_GET['reset-data']) && $_GET['reset-data'] == 'true') {
 }
 
 $title_suffix = "Reservation";
-$title_override = "Get your island adventure reservation from The Keys Car Rental in Antigua!";
+$title_override = "Reserve Your Island Adventure with Keys Car Rental in Antigua!";
 $page = "reservation";
 $description = "Make your reservation for a hassle-free car rental experience in Antigua. Explore the island at your own pace with our reliable vehicles and excellent service.";
 
