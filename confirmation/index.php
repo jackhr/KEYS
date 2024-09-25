@@ -45,62 +45,70 @@ if (isset($order_request)) {
             "@context" => "https://schema.org",
             "@type" => "Order",
             "orderNumber" => $order_request['id'],
-            "orderStatus" => $order_request['confirmed'] ? "https://schema.org/OrderConfirmed" : "https://schema.org/OrderProcessing",
-            "orderedItem" => [
-                "@type" => "Product",
-                "name" => $vehicle['name'],
-                "description" => $vehicle['type'] . " with room for " . $vehicle['people'] . " people for " . $order_request['days'] . " days",
-                "image" => "https://www.keyscarrentalantigua.com/assets/images/vehicles/" . $vehicle['slug'] . ".avif",
-                "brand" => [
-                    "@type" => "Brand",
-                    "name" => explode(" ", $vehicle['name'])[0]
-                ],
-                "offers" => [
-                    "@type" => "Offer",
-                    "priceCurrency" => "USD",
-                    "price" => $order_request['sub_total'],
-                    "eligibleQuantity" => [
-                        "@type" => "QuantitativeValue",
-                        "value" => $order_request['days'],
-                        "unitCode" => "DAY"
+            "orderStatus" => $order_request['confirmed'] ? "https://schema.org/OrderPickupAvailable" : "https://schema.org/OrderProcessing",
+            "orderDate" => $order_request['created_at'],
+            "acceptedOffer" => [
+                "@type" => "Offer",
+                "name" => "Car rental for {$order_request['days']} days",
+                "description" => "{$vehicle['type']} with room for {$vehicle['people']} people for {$order_request['days']} days",
+                "priceCurrency" => "USD",
+                "price" => $order_request['sub_total'],
+                "itemOffered" => [
+                    "@type" => "Product",
+                    "name" => $vehicle['name'],
+                    "description" => "{$vehicle['type']} with room for {$vehicle['people']}",
+                    "image" => "https://www.keyscarrentalantigua.com/assets/images/vehicles/{$vehicle['slug']}.avif",
+                    "brand" => [
+                        "@type" => "Brand",
+                        "name" => explode(" ", $vehicle['name'])[0]
                     ],
-                    "itemOffered" => [
-                        "@type" => "Product",
-                        "name" => $vehicle['name']
-                    ],
-                    "additionalProperty" => [
-                        [
-                            "@type" => "PropertyValue",
-                            "name" => "Transmission",
-                            "value" => $vehicle['manual'] == "1" ? "Manual" : "Automatic"
+                    "offers" => [
+                        "@type" => "Offer",
+                        "priceCurrency" => "USD",
+                        "price" => $vehicle['price_day_USD'],
+                        "eligibleQuantity" => [
+                            "@type" => "QuantitativeValue",
+                            "value" => $order_request['days'],
+                            "unitCode" => "DAY"
                         ],
-                        [
-                            "@type" => "PropertyValue",
-                            "name" => "Air Conditioning",
-                            "value" => $vehicle['ac'] == "1" ? "Yes" : "No"
+                        "itemOffered" => [
+                            "@type" => "Product",
+                            "name" => $vehicle['name']
                         ],
-                        [
-                            "@type" => "PropertyValue",
-                            "name" => "4WD",
-                            "value" => $vehicle['4wd'] == "1" ? "Yes" : "No"
-                        ],
-                        [
-                            "@type" => "PropertyValue",
-                            "name" => "Seats",
-                            "value" => $vehicle['people']
-                        ],
-                        [
-                            "@type" => "PropertyValue",
-                            "name" => "Doors",
-                            "value" => $vehicle['doors']
+                        "additionalProperty" => [
+                            [
+                                "@type" => "PropertyValue",
+                                "name" => "Transmission",
+                                "value" => $vehicle['manual'] == "1" ? "Manual" : "Automatic"
+                            ],
+                            [
+                                "@type" => "PropertyValue",
+                                "name" => "Air Conditioning",
+                                "value" => $vehicle['ac'] == "1" ? "Yes" : "No"
+                            ],
+                            [
+                                "@type" => "PropertyValue",
+                                "name" => "4WD",
+                                "value" => $vehicle['4wd'] == "1" ? "Yes" : "No"
+                            ],
+                            [
+                                "@type" => "PropertyValue",
+                                "name" => "Seats",
+                                "value" => $vehicle['people']
+                            ],
+                            [
+                                "@type" => "PropertyValue",
+                                "name" => "Doors",
+                                "value" => $vehicle['doors']
+                            ]
                         ]
                     ]
+                ],
+                "addOn" => [
+                    "@type" => "Offer",
+                    "name" => "Add-ons",
+                    "itemOffered" => []
                 ]
-            ],
-            "partOfOrder" => [
-                "@type" => "Offer",
-                "name" => "Add-ons",
-                "itemOffered" => []
             ],
             "customer" => [
                 "@type" => "Person",
@@ -115,15 +123,12 @@ if (isset($order_request)) {
                     "addressCountry" => $contact_info['country_or_region']
                 ]
             ],
-            "priceCurrency" => "USD",
-            "price" => $order_request['sub_total'],
-            "acceptedOffer" => []
         ]
     ];
 
     // Adding Add-ons as part of the order
     foreach ($add_ons as $add_on) {
-        $structured_data[0]['partOfOrder']['itemOffered'][] = [
+        $structured_data[0]['acceptedOffer']['addOn']['itemOffered'][] = [
             "@type" => "Product",
             "name" => $add_on['name'],
             "description" => strip_tags($add_on['description']),

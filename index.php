@@ -18,7 +18,7 @@ $structured_data = [
     ],
     [
         "@context" => "https://schema.org",
-        "@type" => "CarRental",
+        "@type" => "LocalBusiness",
         "name" => "The Keys Car Rental",
         "description" => "Rent affordable and well-maintained cars in Antigua and Barbuda.",
         "image" => "https://www.keyscarrentalantigua.com/logo.avif",
@@ -32,6 +32,12 @@ $structured_data = [
             "addressCountry" => "AG"
         ],
         "telephone" => "+1-268-771-1891",
+        "contactPoint" => [
+            "@type" => "ContactPoint",
+            "telephone" => "+1-268-771-1891",
+            "contactType" => "Customer Service",
+            "availableLanguage" => "English"
+        ],
         "openingHours" => "Mo-Su 08:00-18:00"
     ]
 ];
