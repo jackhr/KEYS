@@ -2,12 +2,12 @@
 
 session_start();
 
+include_once '../includes/connection.php';
+
 $title_suffix = "Confirmation";
 $page = "confirmation";
 $description = "Thank you for booking with The Keys Car Rental. Your reservation has been requested. Review your order details, including vehicle, add-ons, and estimated total.";
 $extra_css = "reservation";
-
-include_once '../includes/header.php';
 
 $key = isset($_GET['key']) ? $_GET['key'] : null;
 $jack_testing = (isset($_GET['test']) && ($_GET['test'] == 'true'));
@@ -39,7 +39,112 @@ if (isset($order_request)) {
     $contact_info_query = "SELECT * FROM contact_info WHERE `id` = {$order_request['contact_info_id']}";
     $contact_info_result = mysqli_query($con, $contact_info_query);
     $contact_info = mysqli_fetch_assoc($contact_info_result);
+
+    $structured_data = [
+        [
+            "@context" => "https://schema.org",
+            "@type" => "Order",
+            "orderNumber" => $order_request['id'],
+            "orderStatus" => $order_request['confirmed'] ? "https://schema.org/OrderConfirmed" : "https://schema.org/OrderProcessing",
+            "orderedItem" => [
+                "@type" => "Product",
+                "name" => $vehicle['name'],
+                "description" => $vehicle['type'] . " with room for " . $vehicle['people'] . " people for " . $order_request['days'] . " days",
+                "image" => "https://www.keyscarrentalantigua.com/assets/images/vehicles/" . $vehicle['slug'] . ".avif",
+                "brand" => [
+                    "@type" => "Brand",
+                    "name" => explode(" ", $vehicle['name'])[0]
+                ],
+                "offers" => [
+                    "@type" => "Offer",
+                    "priceCurrency" => "USD",
+                    "price" => $order_request['sub_total'],
+                    "eligibleQuantity" => [
+                        "@type" => "QuantitativeValue",
+                        "value" => $order_request['days'],
+                        "unitCode" => "DAY"
+                    ],
+                    "itemOffered" => [
+                        "@type" => "Product",
+                        "name" => $vehicle['name']
+                    ],
+                    "additionalProperty" => [
+                        [
+                            "@type" => "PropertyValue",
+                            "name" => "Transmission",
+                            "value" => $vehicle['manual'] == "1" ? "Manual" : "Automatic"
+                        ],
+                        [
+                            "@type" => "PropertyValue",
+                            "name" => "Air Conditioning",
+                            "value" => $vehicle['ac'] == "1" ? "Yes" : "No"
+                        ],
+                        [
+                            "@type" => "PropertyValue",
+                            "name" => "4WD",
+                            "value" => $vehicle['4wd'] == "1" ? "Yes" : "No"
+                        ],
+                        [
+                            "@type" => "PropertyValue",
+                            "name" => "Seats",
+                            "value" => $vehicle['people']
+                        ],
+                        [
+                            "@type" => "PropertyValue",
+                            "name" => "Doors",
+                            "value" => $vehicle['doors']
+                        ]
+                    ]
+                ]
+            ],
+            "partOfOrder" => [
+                "@type" => "Offer",
+                "name" => "Add-ons",
+                "itemOffered" => []
+            ],
+            "customer" => [
+                "@type" => "Person",
+                "name" => $contact_info['first_name'] . " " . $contact_info['last_name'],
+                "email" => $contact_info['email'],
+                "telephone" => $contact_info['phone'],
+                "address" => [
+                    "@type" => "PostalAddress",
+                    "streetAddress" => $contact_info['street'],
+                    "addressLocality" => $contact_info['town_or_city'],
+                    "addressRegion" => $contact_info['state_or_county'],
+                    "addressCountry" => $contact_info['country_or_region']
+                ]
+            ],
+            "priceCurrency" => "USD",
+            "price" => $order_request['sub_total'],
+            "acceptedOffer" => []
+        ]
+    ];
+
+    // Adding Add-ons as part of the order
+    foreach ($add_ons as $add_on) {
+        $structured_data[0]['partOfOrder']['itemOffered'][] = [
+            "@type" => "Product",
+            "name" => $add_on['name'],
+            "description" => strip_tags($add_on['description']),
+            "offers" => [
+                "@type" => "Offer",
+                "price" => $add_on['cost'],
+                "priceCurrency" => "USD",
+                "availability" => "https://schema.org/InStock"
+            ],
+            "additionalProperty" => [
+                [
+                    "@type" => "PropertyValue",
+                    "name" => "Fixed Price",
+                    "value" => $add_on['fixed_price'] == "1" ? "Yes" : "No"
+                ]
+            ]
+        ];
+    }
 }
+
+include_once '../includes/header.php';
 
 ?>
 
