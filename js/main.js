@@ -11,8 +11,8 @@ const STATE = {
 };
 
 $(function () {
-    STATE.pickUpFP = $("#pick-up-flatpickr").flatpickr(STATE.configFP);
-    STATE.returnFP = $("#return-flatpickr").flatpickr(STATE.configFP);
+    STATE.pickUpFP = $("#pick-up-flatpickr").flatpickr?.(STATE.configFP);
+    STATE.returnFP = $("#return-flatpickr").flatpickr?.(STATE.configFP);
 
     $(".checkbox-container").on('click', function () {
         const checkbox = $(this).find('input');
