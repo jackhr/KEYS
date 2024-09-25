@@ -2,6 +2,7 @@
 session_start();
 
 include 'connection.php';
+include 'helpers.php';
 
 // Get the JSON data
 $json = file_get_contents('php://input');
@@ -18,9 +19,21 @@ if (isset($data['step'])) {
     unset($data['step']);
 }
 
-if (isset($data['action']) && $data['action'] === 'itinerary') {
+if ($data['action'] === 'itinerary') {
     unset($data['action']);
+    $days = getDifferenceInDays($data['pickUpDate']['date'], $data['returnDate']['date']);
     $_SESSION['reservation']['itinerary'] = $data;
+    $_SESSION['reservation']['itinerary']['days'] = $days;
+
+    if (isset($_SESSION['reservation']['vehicle'])) {
+        $vehicle_discount_query = "SELECT * FROM vehicle_discounts WHERE vehicle_id = {$_SESSION['reservation']['vehicle']['id']} AND `days` <= $days ORDER BY `days` DESC LIMIT 1";
+        $vehicle_discount_result = mysqli_query($con, $vehicle_discount_query);
+        $discount = mysqli_fetch_assoc($vehicle_discount_result);
+
+        $_SESSION['reservation']['discount'] = $discount;
+    }
+
+    $data = $_SESSION['reservation'];
 }
 
 if (isset($data['action']) && $data['action'] === 'vehicle') {
@@ -33,12 +46,18 @@ if (isset($data['action']) && $data['action'] === 'vehicle') {
     $vehicle_result = $stmt->get_result();
     $vehicle = $vehicle_result->fetch_assoc();
 
-    if ($vehicle) {
-        $vehicle['imgSrc'] = "/assets/images/vehicles/{$vehicle['slug']}.avif";
-        $_SESSION['reservation']['vehicle'] = $vehicle;
-    } else {
-        echo json_encode(['error' => 'Vehicle not found']);
-        exit;
+    $vehicle['imgSrc'] = "/assets/images/vehicles/{$vehicle['slug']}.avif";
+    $_SESSION['reservation']['vehicle'] = $vehicle;
+
+    if (isset($_SESSION['reservation']['itinerary'])) {
+        $days = $_SESSION['reservation']['itinerary']['days'];
+        $stmt = $con->prepare("SELECT * FROM vehicle_discounts WHERE vehicle_id = ? AND `days` <= ? ORDER BY `days` DESC LIMIT 1");
+        $stmt->bind_param('ii', $data['id'], $days);
+        $stmt->execute();
+        $vehicle_discount_result = $stmt->get_result();
+        $discount = $vehicle_discount_result->fetch_assoc();
+
+        $_SESSION['reservation']['discount'] = $discount;
     }
 
     $data = $_SESSION['reservation'];
@@ -51,16 +70,11 @@ if (isset($data['action']) && $data['action'] === 'add_add_on') {
     $add_on_result = $stmt->get_result();
     $add_on = $add_on_result->fetch_assoc();
 
-    if ($add_on) {
-        // Merge new add-on with current add-ons in the session object and sort by id
-        $_SESSION['reservation']['add_ons'][$add_on['id']] = $add_on;
-        uasort($_SESSION['reservation']['add_ons'], function ($a, $b) {
-            return $a['id'] - $b['id'];
-        });
-    } else {
-        echo json_encode(['error' => 'Add-on not found']);
-        exit;
-    }
+    // Merge new add-on with current add-ons in the session object and sort by id
+    $_SESSION['reservation']['add_ons'][$add_on['id']] = $add_on;
+    uasort($_SESSION['reservation']['add_ons'], function ($a, $b) {
+        return $a['id'] - $b['id'];
+    });
 
     $data = $_SESSION['reservation'];
 }
@@ -72,35 +86,18 @@ if (isset($data['action']) && $data['action'] === 'remove_add_on') {
     $add_on_result = $stmt->get_result();
     $add_on = $add_on_result->fetch_assoc();
 
-    if ($add_on && isset($_SESSION['reservation']['add_ons'][$add_on['id']])) {
-        // Remove add-on from current add-ons in the session object
-        unset($_SESSION['reservation']['add_ons'][$add_on['id']]);
-    } else {
-        echo json_encode(['error' => 'Add-on not found or not in session']);
-        exit;
-    }
+    // Remove add-on from current add-ons in the session object
+    unset($_SESSION['reservation']['add_ons'][$add_on['id']]);
 
+    $data = $_SESSION['reservation'];
+}
+
+if (isset($data['action']) && $data['action'] === 'get_reservation') {
     $data = $_SESSION['reservation'];
 }
 
 if (isset($data['action']) && $data['action'] === 'reset_reservation') {
     unset($_SESSION['reservation']);
-}
-
-if (isset($data['action']) && $data['action'] === 'reset_itinerary') {
-    unset($_SESSION['reservation']['itinerary']);
-}
-
-if (isset($data['action']) && $data['action'] === 'reset_car_selection') {
-    unset($_SESSION['reservation']['vehicle']);
-}
-
-if (isset($data['action']) && $data['action'] === 'reset_add_ons') {
-    unset($_SESSION['reservation']['add_ons']);
-}
-
-if (isset($data['action']) && $data['action'] === 'reset_contact_info') {
-    unset($_SESSION['reservation']['contact_info']);
 }
 
 // Send back the data as JSON

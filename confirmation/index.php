@@ -102,7 +102,7 @@ if (isset($order_request)) {
                 "offers" => [
                     "@type" => "Offer",
                     "priceCurrency" => "USD",
-                    "price" => $vehicle['price_day_USD'],
+                    "price" => $vehicle['base_price_USD'],
                     "eligibleQuantity" => [
                         "@type" => "QuantitativeValue",
                         "value" => $order_request['days'],

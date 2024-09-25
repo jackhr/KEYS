@@ -23,7 +23,6 @@ try {
     $message = $data["message"];
 
     // Email values
-    $to = "info@keyscarrentalantigua.com,jc2o@mac.com,jrainey@tropicalstudios.com";
     $subject = "Someone Has Contacted You From The Keys Car Rental Website";
     $headers  = "From: no-reply@keyscarrentalantigua.com\r\n";
     $headers .= "Reply-To: $email\r\n";
@@ -39,7 +38,7 @@ Email: $email
 Message: $message";
 
     // Send email to Admin
-    $mail_res = mail($to, $subject, $body, $headers);
+    $mail_res = mail($contact_email_string, $subject, $body, $headers);
 
     respond([
         "success" => true,
