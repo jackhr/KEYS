@@ -6,12 +6,13 @@ include_once '../includes/connection.php';
 
 if (isset($_GET['reset-data']) && $_GET['reset-data'] == 'true') {
     session_destroy();
-    header('Location: /book-now');
+    header('Location: /reservation/');
 }
 
 $title_suffix = "Reservation";
-$page = "book-now";
-$description = "Reserve your car with The Keys Car Rental in Antigua. Choose from reliable vehicles, add extras, and book online today for affordable, dependable service.";
+$title_override = "Get your island adventure reservation from The Keys Car Rental in Antigua!";
+$page = "reservation";
+$description = "Make your reservation for a hassle-free car rental experience in Antigua. Explore the island at your own pace with our reliable vehicles and excellent service.";
 
 $vehicles_arr = [];
 

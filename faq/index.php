@@ -1,6 +1,6 @@
 <?php
 
-$title_suffix = "FAQ";
+$title_override = "FAQs About Keys Car Rental in Antigua - Your Questions Answered";
 $page = "faq";
 $description = "Find answers to questions about The Keys Car Rental Antigua; Rental requirements, payment options, insurance, child safety seats, driving in Antigua, and more.";
 $structured_data = [

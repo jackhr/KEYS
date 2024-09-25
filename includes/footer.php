@@ -8,7 +8,7 @@
                 <h6>Navigation</h6>
                 <ul>
                     <li><a href="/">Home</a></li>
-                    <li><a href="/book-now/">Book Now</a></li>
+                    <li><a href="/reservation/">Book Now</a></li>
                     <li><a href="/about/">About</a></li>
                     <li><a href="/faq/">FAQ</a></li>
                     <li><a href="/contact/">Contact</a></li>

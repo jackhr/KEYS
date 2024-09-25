@@ -1,6 +1,6 @@
 <?php
 
-$title_suffix = "About";
+$title_override = "About Keys Car Rental: Your Trusted Partner for Island Adventures";
 $page = "about";
 $description = "Learn about The Keys Car Rental Antigua. We offer quality vehicles and reliable rentals for a convenient stay. Learn our history and commitment to customer satisfaction.";
 $structured_data = [

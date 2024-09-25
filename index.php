@@ -1,6 +1,6 @@
 <?php
 
-$title_suffix = "Home";
+$title_override = "Affordable Antigua Car Rental for Your Perfect Island Adventure";
 $page = "index";
 $description = "The Keys Car Rental offers affordable, well-maintained vehicles. Enjoy online booking and exceptional customer service. Rent a car in Antigua today!";
 $structured_data = [
@@ -111,7 +111,7 @@ while ($row = mysqli_fetch_assoc($result)) $vehicles_arr[] = $row;
 <section id="feature-section">
 
     <div class="inner">
-        <h1>The Keys Car Rental</h1>
+        <h1>Antigua Car Rental Services</h1>
         <div id="features">
             <div class="feature-container">
                 <div class="feature-icon">
@@ -189,7 +189,7 @@ while ($row = mysqli_fetch_assoc($result)) $vehicles_arr[] = $row;
     <div class="inner">
         <div id="cars">
             <?php foreach ($vehicles_arr as $vehicle) { ?>
-                <a class="car-container" href="/book-now/?vehicle_id=<?php echo $vehicle['id']; ?>">
+                <a class="car-container" href="/reservation/?vehicle_id=<?php echo $vehicle['id']; ?>">
                     <div class="overlay">
                         <div></div>
                     </div>
@@ -238,7 +238,7 @@ while ($row = mysqli_fetch_assoc($result)) $vehicles_arr[] = $row;
                 </a>
             <?php } ?>
         </div>
-        <a href="/book-now/">BOOK NOW</a>
+        <a href="/reservation/">BOOK NOW</a>
     </div>
 </section>
 

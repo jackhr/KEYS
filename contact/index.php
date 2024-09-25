@@ -1,6 +1,6 @@
 <?php
 
-$title_suffix = "Contact";
+$title_override = "Contact Keys Car Rental Antigua for Your Rental Needs Today!";
 $page = "contact";
 $description = "Get in touch with The Keys Car Rental in Antigua via phone, email, or our contact form. We're open 7 days a week to assist you with your car rental needs.";
 $structured_data = [

@@ -5,7 +5,7 @@ session_start();
 $title_suffix = "Confirmation";
 $page = "confirmation";
 $description = "Thank you for booking with The Keys Car Rental. Your reservation has been requested. Review your order details, including vehicle, add-ons, and estimated total.";
-$extra_css = "book-now";
+$extra_css = "reservation";
 
 include_once '../includes/header.php';
 
