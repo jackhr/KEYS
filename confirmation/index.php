@@ -6,28 +6,28 @@ include_once '../includes/connection.php';
 
 $title_suffix = "Confirmation";
 $page = "confirmation";
-$description = "Thank you for booking with The Keys Car Rental. Your reservation has been requested. Review your order details, including vehicle, add-ons, and estimated total.";
+$description = "Thank you for booking with $company_name. Your reservation has been requested. Review your order details, including vehicle, add-ons, and estimated total.";
 $extra_css = "reservation";
 $structured_data = [
     [
         "@context" => "https://schema.org",
         "@type" => "WebPage",
-        "name" => "The Keys Car Rental",
+        "name" => $company_name,
         "description" => $description,
-        "url" => "https://www.keyscarrentalantigua.com/",
+        "url" => "https://$www_domain/",
         "publisher" => [
             "@type" => "Organization",
-            "name" => "The Keys Car Rental",
-            "logo" => "https://www.keyscarrentalantigua.com/assets/images/logo.avif"
+            "name" => $company_name,
+            "logo" => "https://$www_domain/assets/images/logo.avif"
         ]
     ],
     [
         "@context" => "https://schema.org",
         "@type" => "LocalBusiness",
-        "name" => "The Keys Car Rental",
+        "name" => $company_name,
         "description" => "Rent affordable and well-maintained cars in Antigua and Barbuda.",
-        "image" => "https://www.keyscarrentalantigua.com/logo.avif",
-        "url" => "https://www.keyscarrentalantigua.com/",
+        "image" => "https://$www_domain/logo.avif",
+        "url" => "https://$www_domain/",
         "address" => [
             "@type" => "PostalAddress",
             "streetAddress" => "Herbert's road",
@@ -94,7 +94,7 @@ if (isset($order_request)) {
                 "@type" => "Product",
                 "name" => $vehicle['name'],
                 "description" => "{$vehicle['type']} with room for {$vehicle['people']}",
-                "image" => "https://www.keyscarrentalantigua.com/assets/images/vehicles/{$vehicle['slug']}.avif",
+                "image" => "https://$www_domain/assets/images/vehicles/{$vehicle['slug']}.avif",
                 "brand" => [
                     "@type" => "Brand",
                     "name" => explode(" ", $vehicle['name'])[0]
@@ -165,7 +165,7 @@ if (isset($order_request)) {
     // Adding Add-ons as part of the order
     foreach ($add_ons as $add_on) {
         $structured_data[2]['acceptedOffer']['addOn']['itemOffered'][] = [
-            "@type" => "Product",
+            "@type" => "Service",
             "name" => $add_on['name'],
             "description" => strip_tags($add_on['description']),
             "offers" => [

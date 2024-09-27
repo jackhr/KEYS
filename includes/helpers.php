@@ -272,7 +272,7 @@ function generateEmailBody($hotel, $first_name, $last_name, $country_region, $st
                                                 <tbody>
                                                     <tr>
                                                         <td colspan="2" valign="middle" style="border-radius:6px;border:0;color:#8a8a8a;' . $fontFamily . 'font-size:12px;line-height:150%;text-align:center;padding:24px 0">
-                                                            <p style="margin:0 0 16px">The Keys Car Rental Antigua</p>
+                                                            <p style="margin:0 0 16px">The Keys Car Rental</p>
                                                         </td>
                                                     </tr>
                                                 </tbody>

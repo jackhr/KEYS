@@ -28,12 +28,12 @@
                 </div>
                 <div class="contact-link">
                     <span>Email:</span>
-                    <a href="mailto:info@keyscarrentalantigua.com">info@keyscarrentalantigua.com</a>
+                    <a href="mailto:info@<?php echo $domain; ?>">info@<?php echo $domain; ?></a>
                 </div>
             </div>
         </div>
 
-        <div id="copyright">© <?php echo date('Y'); ?> The Keys Car Rental Antigua   |   US$ to EC$ Exchange at 2.7   |   For discounted rate, enter 2 or more days.</div>
+        <div id="copyright">© <?php echo date('Y'); ?> <?php echo $company_name; ?>   |   US$ to EC$ Exchange at 2.7   |   For discounted rate, enter 2 or more days.</div>
     </div>
 
 </footer>

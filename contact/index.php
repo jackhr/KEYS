@@ -1,23 +1,25 @@
 <?php
 
-$title_override = "Contact Keys Car Rental Antigua for Your Rental Needs Today!";
+include_once '../includes/env.php';
+
+$title_override = "Contact $company_name for Your Rental Needs Today!";
 $page = "contact";
-$description = "Get in touch with The Keys Car Rental in Antigua via phone, email, or our contact form. We're open 7 days a week to assist you with your car rental needs.";
+$description = "Get in touch with $company_name in Antigua via phone, email, or our contact form. We're open 7 days a week to assist you with your car rental needs.";
 $structured_data = [
     [
         "@context" => "https://schema.org",
         "@type" => "ContactPage",
-        "name" => "The Keys Car Rental | Contact",
+        "name" => "$company_name | Contact",
         "description" => $description,
-        "url" => "https://www.keyscarrentalantigua.com/contact/"
+        "url" => "https://$www_domain/contact/"
     ],
     [
         "@context" => "https://schema.org",
         "@type" => "LocalBusiness",
-        "name" => "The Keys Car Rental",
+        "name" => $company_name,
         "description" => "Rent affordable and well-maintained cars in Antigua and Barbuda.",
-        "image" => "https://www.keyscarrentalantigua.com/logo.avif",
-        "url" => "https://www.keyscarrentalantigua.com/",
+        "image" => "https://$www_domain/logo.avif",
+        "url" => "https://$www_domain/",
         "address" => [
             "@type" => "PostalAddress",
             "streetAddress" => "Herbert's road",
@@ -48,7 +50,7 @@ include_once '../includes/header.php';
 
 <section id="contact-card-section">
     <div class="inner">
-        <h2>The Keys Car Rental</h2>
+        <h2><?php echo $company_name; ?></h2>
 
         <div class="contact-brief-info">
             <span>Herbert’s road</span>
@@ -63,7 +65,7 @@ include_once '../includes/header.php';
             </div>
             <div class="contact-link">
                 <span>Email:</span>
-                <a href="mailto:info@keyscarrentalantigua.com">info@keyscarrentalantigua.com</a>
+                <a href="mailto:info@<?php echo $domain; ?>">info@<?php echo $domain; ?></a>
             </div>
         </div>
 

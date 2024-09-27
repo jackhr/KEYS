@@ -1,28 +1,30 @@
 <?php
 
+include_once 'includes/env.php';
+
 $title_override = "Affordable Antigua Car Rental for Your Perfect Island Adventure";
 $page = "index";
-$description = "The Keys Car Rental offers affordable, well-maintained vehicles. Enjoy online booking and exceptional customer service. Rent a car in Antigua today!";
+$description = "$company_name offers affordable, well-maintained vehicles. Enjoy online booking and exceptional customer service. Rent a car in Antigua today!";
 $structured_data = [
     [
         "@context" => "https://schema.org",
         "@type" => "WebPage",
-        "name" => "The Keys Car Rental",
+        "name" => $company_name,
         "description" => $description,
-        "url" => "https://www.keyscarrentalantigua.com/",
+        "url" => "https://$www_domain/",
         "publisher" => [
             "@type" => "Organization",
-            "name" => "The Keys Car Rental",
-            "logo" => "https://www.keyscarrentalantigua.com/assets/images/logo.avif"
+            "name" => $company_name,
+            "logo" => "https://$www_domain/assets/images/logo.avif"
         ]
     ],
     [
         "@context" => "https://schema.org",
         "@type" => "LocalBusiness",
-        "name" => "The Keys Car Rental",
+        "name" => $company_name,
         "description" => "Rent affordable and well-maintained cars in Antigua and Barbuda.",
-        "image" => "https://www.keyscarrentalantigua.com/logo.avif",
-        "url" => "https://www.keyscarrentalantigua.com/",
+        "image" => "https://$www_domain/logo.avif",
+        "url" => "https://$www_domain/",
         "address" => [
             "@type" => "PostalAddress",
             "streetAddress" => "Herbert's road",
@@ -158,7 +160,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                 </div>
                 <div class="feature-info">
                     <h2>Outstanding Service</h2>
-                    <p>At The Keys Car Rental, we're dedicated to delivering a service experience that surpasses expectations. Our approach is rooted in honesty, professionalism, and a warm, friendly demeanor towards all our clients. We prioritize your user experience, understanding that the most powerful endorsement comes from satisfied customers sharing their positive experiences through word-of-mouth.</p>
+                    <p>At <?php echo $company_name; ?>, we're dedicated to delivering a service experience that surpasses expectations. Our approach is rooted in honesty, professionalism, and a warm, friendly demeanor towards all our clients. We prioritize your user experience, understanding that the most powerful endorsement comes from satisfied customers sharing their positive experiences through word-of-mouth.</p>
                 </div>
             </div>
             <div class="feature-container">

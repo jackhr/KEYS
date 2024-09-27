@@ -23,13 +23,13 @@ try {
     $message = $data["message"];
 
     // Email values
-    $subject = "Someone Has Contacted You From The Keys Car Rental Website";
-    $headers  = "From: no-reply@keyscarrentalantigua.com\r\n";
+    $subject = "Someone Has Contacted You From $company_name Website";
+    $headers  = "From: no-reply@$domain\r\n";
     $headers .= "Reply-To: $email\r\n";
     $headers .= "MIME-Version: 1.0\r\n";
     $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
 
-    $body = "Some has contacted you from the The Keys Car Rental website.
+    $body = "Some has contacted you from the $company_name website.
 
 Name: $name
 

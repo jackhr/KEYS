@@ -2,9 +2,9 @@
 
 include_once 'connection.php';
 
-$description = isset($description) ? $description : "The Keys Car Rental Antigua offers affordable, well-maintained vehicles. Enjoy online booking and exceptional customer service. Rent a car in Antigua today!";
+$description = isset($description) ? $description : "$company_name offers affordable, well-maintained vehicles. Enjoy online booking and exceptional customer service. Rent a car in Antigua today!";
 
-$base_title = "The Keys Car Rental";
+$base_title = $company_name;
 
 $title = isset($title_override) ? $title_override : (isset($title_suffix) ? $base_title .= " | " . $title_suffix : $title);
 
@@ -28,7 +28,7 @@ $flatpick_load_lookup = [
 
 $style_prefix = $page_lookup[$page] ?? "";
 $canonical_dir = $page === "index" ? "" : $page . "/";
-$canonical_url = "https://www.keyscarrentalantigua.com/{$canonical_dir}";
+$canonical_url = "https://$www_domain/{$canonical_dir}";
 $load_swal = !!$swal_load_lookup[$page];
 $load_flatpick = !!$flatpick_load_lookup[$page];
 
@@ -80,7 +80,7 @@ $load_flatpick = !!$flatpick_load_lookup[$page];
     <meta property="og:title" content="<?php echo $base_title ?>">
     <meta property="og:description" content="<?php echo $description; ?>">
     <meta property="og:type" content="Website">
-    <meta property="og:image" content="https://www.keyscarrentalantigua.com/assets/images/logo.avif">
+    <meta property="og:image" content="https://<?php echo $www_domain; ?>/assets/images/logo.avif">
     <meta property="og:url" content="<?php echo $canonical_url; ?>">
     <link rel="canonical" href="<?php echo $canonical_url; ?>" />
     <!-- SEO END -->
