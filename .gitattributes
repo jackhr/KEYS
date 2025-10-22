@@ -1,5 +1,7 @@
 assets/images/vehicles/honda_fit.jpg filter=lfs diff=lfs merge=lfs -text
 assets/images/vehicles/honda_fit.avif filter=lfs diff=lfs merge=lfs -text
+assets/images/vehicles/santa_fe.jpg filter=lfs diff=lfs merge=lfs -text
+assets/images/vehicles/santa_fe.avif filter=lfs diff=lfs merge=lfs -text
 assets/images/vehicles/toyota_corolla_axio.jpg filter=lfs diff=lfs merge=lfs -text
 assets/images/vehicles/toyota_corolla_axio.avif filter=lfs diff=lfs merge=lfs -text
 assets/images/vehicles/toyota_vitz.jpg filter=lfs diff=lfs merge=lfs -text
