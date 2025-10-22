@@ -1,3 +1,5 @@
+assets/images/vehicles/honda_cr_v.jpg filter=lfs diff=lfs merge=lfs -text
+assets/images/vehicles/honda_cr_v.avif filter=lfs diff=lfs merge=lfs -text
 assets/images/vehicles/honda_fit.jpg filter=lfs diff=lfs merge=lfs -text
 assets/images/vehicles/honda_fit.avif filter=lfs diff=lfs merge=lfs -text
 assets/images/vehicles/hyundai_santa_fe.jpg filter=lfs diff=lfs merge=lfs -text
