@@ -123,17 +123,37 @@ function generateEmailBody($hotel, $first_name, $last_name, $country_region, $st
 
     $add_ons_rows = "";
 
+    if (!is_iterable($add_ons)) {
+        $add_ons = [];
+    }
+
     foreach ($add_ons as $add_on) {
-        $add_on_cost = getAddOnCostForTotalDays($add_on, $days, $vehicle);
-        $quantity = $add_on['fixed_price'] !== "1" ? $days : 1;
+        if (!is_array($add_on)) {
+            continue;
+        }
+
+        $name = $add_on['name'] ?? '';
+        $fixedPrice = $add_on['fixed_price'] ?? '0';
+
+        $safeDays = is_numeric($days) ? (int) $days : 0;
+        $quantity = $fixedPrice !== "1" ? $safeDays : 1;
+
+        $add_on_cost = getAddOnCostForTotalDays($add_on, $safeDays, $vehicle);
+        $add_on_cost = $add_on_cost ?? 0;
+
         $add_ons_rows .= '<tr>
-            <td style="' . $fontFamily . 'color:#636363;border:1px solid #e5e5e5;padding:12px;text-align:left;vertical-align:middle;word-wrap:break-word">' . $add_on['name'] . '</td>
-            <td style="' . $fontFamily . 'color:#636363;border:1px solid #e5e5e5;padding:12px;text-align:left;vertical-align:middle;font-family:Helvetica,Roboto,Arial,sans-serif">' . $quantity . '</td>
+            <td style="' . $fontFamily . 'color:#636363;border:1px solid #e5e5e5;padding:12px;text-align:left;vertical-align:middle;word-wrap:break-word">'
+                . htmlspecialchars($name, ENT_QUOTES, 'UTF-8') .
+                '</td>
+            <td style="' . $fontFamily . 'color:#636363;border:1px solid #e5e5e5;padding:12px;text-align:left;vertical-align:middle;font-family:Helvetica,Roboto,Arial,sans-serif">'
+                . $quantity .
+                '</td>
             <td style="' . $fontFamily . 'color:#636363;border:1px solid #e5e5e5;padding:12px;text-align:left;vertical-align:middle;font-family:Helvetica,Roboto,Arial,sans-serif">
-                <span><u></u>USD<span>$</span>' . $add_on_cost . '<u></u></span>
+                <span>USD <span>$</span>' . number_format((float) $add_on_cost, 2) . '</span>
             </td>
         </tr>';
     }
+
 
     if (is_null($hotel)) $hotel = "<i>Not provided</i>";
 

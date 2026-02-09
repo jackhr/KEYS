@@ -45,7 +45,7 @@ Message: $message";
         "message" => "success",
         "status" => 200,
         "data" => [
-            "mail" => compact("to", "subject", "body", "headers", "mail_res"),
+            "mail" => compact("email", "subject", "body", "headers", "mail_res"),
             "data" => $data,
         ]
     ]);
