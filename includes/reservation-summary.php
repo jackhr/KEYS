@@ -74,13 +74,13 @@ if (isset($order_request) && !!$order_request) {
 
 <div id="reservation-summary">
 
-<?php if ($render_change_btn) { ?>
+    <?php if ($render_change_btn) { ?>
         <span class="change-car-btn continue-btn">Change?</span>
     <?php } ?>
 
     <h5><?php echo $vehicle_name; ?></h5>
     <?php if (!!$order_request) { ?>
-        <h6><?php echo $vehicle_type . ($has_collion_insurance ? " - USD\${$vehicle['insurance']}/day Insurance" : ""); ?></h6>
+        <h6><?php echo $vehicle_type . ((isset($has_collion_insurance) && $has_collion_insurance) ? " - USD\${$vehicle['insurance']}/day Insurance" : ""); ?></h6>
     <?php } else { ?>
         <h6><?php echo $vehicle_type . (isset($vehicle) ? " - USD\${$vehicle['insurance']}/day Insurance" : ""); ?></h6>
     <?php } ?>

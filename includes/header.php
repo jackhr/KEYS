@@ -2,11 +2,28 @@
 
 include_once 'connection.php';
 
-$description = isset($description) ? $description : "$company_name offers affordable, well-maintained vehicles. Enjoy online booking and exceptional customer service. Rent a car in Antigua today!";
+// Safe defaults
+$company_name  = $company_name ?? '';
+$www_domain    = $www_domain ?? '';
+$page          = $page ?? 'index';
 
-$base_title = $company_name;
+$description = $description
+    ?? ($company_name !== ''
+        ? "$company_name offers affordable, well-maintained vehicles. Enjoy online booking and exceptional customer service. Rent a car in Antigua today!"
+        : "Affordable, well-maintained vehicles. Enjoy online booking and exceptional customer service. Rent a car in Antigua today!"
+    );
 
-$title = isset($title_override) ? $title_override : (isset($title_suffix) ? $base_title .= " | " . $title_suffix : $title);
+// Title building (safe + predictable)
+$base_title = $company_name !== '' ? $company_name : '';
+
+// Priority: override > suffix > base
+if (!empty($title_override)) {
+    $title = $title_override;
+} elseif (!empty($title_suffix) && $base_title !== '') {
+    $title = $base_title . ' | ' . $title_suffix;
+} else {
+    $title = $base_title;
+}
 
 $page_lookup = [
     "about" => "../",
@@ -26,11 +43,13 @@ $flatpick_load_lookup = [
     "reservation" => 1,
 ];
 
-$style_prefix = $page_lookup[$page] ?? "";
-$canonical_dir = $page === "index" ? "" : $page . "/";
-$canonical_url = "https://$www_domain/{$canonical_dir}";
-$load_swal = !!$swal_load_lookup[$page];
-$load_flatpick = !!$flatpick_load_lookup[$page];
+// Safe access with defaults
+$style_prefix   = $page_lookup[$page] ?? "";
+$canonical_dir  = ($page === "index") ? "" : $page . "/";
+$canonical_url  = $www_domain !== "" ? "https://{$www_domain}/{$canonical_dir}" : "";
+
+$load_swal      = !empty($swal_load_lookup[$page]);      // false if key missing
+$load_flatpick  = !empty($flatpick_load_lookup[$page]);  // false if key missing
 
 ?>
 
@@ -132,6 +151,9 @@ $load_flatpick = !!$flatpick_load_lookup[$page];
     <!-- END STRUCTURED DATA -->
 
     <script src="/js/min/main.min.js" defer></script>
+    <?php if (isset($extra_js) && file_exists("{$style_prefix}js/min/{$extra_js}.min.js")) { ?>
+        <script src="/js/min/<?php echo $extra_js ?>.min.js" defer></script>
+    <?php } ?>
 </head>
 
 <body id="<?php echo $page ?>-page">
