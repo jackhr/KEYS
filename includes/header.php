@@ -27,17 +27,20 @@ if (!empty($title_override)) {
 
 $page_lookup = [
     "about" => "../",
+    "admin" => "../",
     "reservation" => "../",
     "confirmation" => "../",
     "contact" => "../",
     "faq" => "../",
     "index" => ""
 ];
+
 $swal_load_lookup = [
     "index" => 1,
     "reservation" => 1,
     "contact" => 1,
 ];
+
 $flatpick_load_lookup = [
     "index" => 1,
     "reservation" => 1,
