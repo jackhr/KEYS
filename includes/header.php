@@ -131,7 +131,7 @@ $load_flatpick = !!$flatpick_load_lookup[$page];
     ?>
     <!-- END STRUCTURED DATA -->
 
-    <script src="/js/main.min.js" defer></script>
+    <script src="/js/min/main.min.js" defer></script>
 </head>
 
 <body id="<?php echo $page ?>-page">
