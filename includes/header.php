@@ -27,7 +27,6 @@ if (!empty($title_override)) {
 
 $page_lookup = [
     "about" => "../",
-    "admin" => "../",
     "reservation" => "../",
     "confirmation" => "../",
     "contact" => "../",
@@ -154,9 +153,6 @@ $load_flatpick  = !empty($flatpick_load_lookup[$page]);  // false if key missing
     <!-- END STRUCTURED DATA -->
 
     <script src="/js/min/main.min.js" defer></script>
-    <?php if (isset($extra_js) && file_exists("{$style_prefix}js/min/{$extra_js}.min.js")) { ?>
-        <script src="/js/min/<?php echo $extra_js ?>.min.js" defer></script>
-    <?php } ?>
 </head>
 
 <body id="<?php echo $page ?>-page">
